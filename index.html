@@ -5,39 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Wedding Invitation</title>
 
-    <!-- ============================================================
-    OPEN GRAPH / SOCIAL PREVIEW META TAGS
-    Customise these for social media sharing previews.
-    ============================================================ -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Wedding Invitation" />
-    <meta property="og:description" content="We cordially invite you to celebrate the wedding journey of our family. Join us for Holud, Akt, Wedding & Walima ceremonies!" />
+    <meta property="og:description" content="We cordially invite you to celebrate the wedding of Salwa Ibnat Khan & Mohammed Safique Hossain." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sadafmdmahbub.github.io/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Wedding Invitation" />
-    <meta name="twitter:description" content="We cordially invite you to celebrate the wedding journey of our family." />
+    <meta name="twitter:description" content="We cordially invite you to celebrate the wedding of Salwa Ibnat Khan & Mohammed Safique Hossain." />
 
-    <!-- ============================================================
-    GOOGLE FONTS
-    'Dancing Script' – used for hints and decorative text
-    'Great Vibes'   – used for headings and countdown
-    'Amiri'         – used for Arabic Quran text
-    ============================================================ -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
         /* ============================================================
-        CUSTOMISABLE COLOURS & TIMINGS
-        Change these variables to match your theme.
-        --card-bg      : background colour of the whole app and cards
-        --text-main    : primary text colour (dark brown)
-        --text-sub     : secondary text colour (lighter brown)
-        --fade-dur     : duration of fade-in animations for text
-        --env-speed    : speed of the envelope opening animation
-        --hint-color   : colour of the "Tap to Open" hint
-        --gold         : gold accent colour
-        --quran-gold   : colour for the Arabic Quran text
-        ============================================================ */
+           CUSTOMISABLE COLOURS & TIMINGS
+           ============================================================ */
         :root {
             --card-bg: #FFFFF0;
             --text-main: #4e342e;
@@ -50,8 +33,8 @@
         }
 
         /* ============================================================
-        RESET & BASE STYLES
-        ============================================================ */
+           RESET & BASE STYLES
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -62,15 +45,13 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            /* prevent page scrolling */;
             font-family: 'Georgia', serif;
             background: var(--card-bg);
         }
 
         /* ============================================================
-        LOADING OVERLAY
-        Shows while images are preloading.
-        ============================================================ */
+           LOADING OVERLAY
+           ============================================================ */
         #loading-overlay {
             position: fixed;
             top: 0;
@@ -134,8 +115,8 @@
         }
 
         /* ============================================================
-        MAIN APP CONTAINER
-        ============================================================ */
+           MAIN APP CONTAINER
+           ============================================================ */
         #app {
             position: relative;
             width: 100%;
@@ -152,8 +133,8 @@
         }
 
         /* ============================================================
-        ENVELOPE – the initial "Tap to Open" view
-        ============================================================ */
+           ENVELOPE – the initial "Tap to Open" view
+           ============================================================ */
         .envelope-container {
             position: absolute;
             width: 90vw;
@@ -167,7 +148,6 @@
             transition: opacity 1s ease 1.5s;
             margin-left: 20px;
         }
-        /* Hint text that bounces above the envelope */
         .tap-hint {
             position: absolute;
             top: -60px;
@@ -200,7 +180,6 @@
             height: 100%;
             z-index: 1;
         }
-        /* Two halves of the envelope that slide apart */
         .envelope-half {
             position: absolute;
             top: 0;
@@ -222,7 +201,6 @@
             background-position: left;
         }
 
-        /* When open, the halves slide outward and the container fades */
         .envelope-container.open .left-half {
             transform: translateX(-150%);
         }
@@ -238,8 +216,8 @@
         }
 
         /* ============================================================
-        COUNTDOWN TIMER – shows time remaining until the next event
-        ============================================================ */
+           COUNTDOWN TIMER
+           ============================================================ */
         #timer-container {
             position: absolute;
             top: 25px;
@@ -249,7 +227,6 @@
             z-index: 50;
             transition: opacity 0.5s ease;
             pointer-events: none;
-            /* so clicks pass through to slider */;
         }
         .timer-label {
             font-size: 0.9rem;
@@ -265,8 +242,8 @@
         }
 
         /* ============================================================
-        SLIDER – contains all the event cards
-        ============================================================ */
+           SLIDER
+           ============================================================ */
         .slider {
             position: relative;
             width: 85vw;
@@ -275,12 +252,10 @@
             display: none;
             margin-top: 50px;
             touch-action: none;
-            /* prevent browser scroll interference on touch */;
             user-select: none;
             -webkit-user-select: none;
         }
 
-        /* Hint that appears on the intro card: "Swipe to see more →" */
         .swipe-hint {
             position: absolute;
             top: -45px;
@@ -312,9 +287,8 @@
         }
 
         /* ============================================================
-        INDIVIDUAL CARDS
-        Each card has a background image and contains event details.
-        ============================================================ */
+           CARDS
+           ============================================================ */
         .card {
             position: absolute;
             width: 100%;
@@ -336,7 +310,6 @@
             pointer-events: none;
             overflow-y: auto;
         }
-        /* Active card is visible and interactive */
         .card.active {
             opacity: 1;
             transform: scale(1) translateY(0);
@@ -344,13 +317,11 @@
             z-index: 10;
         }
 
-        /* ---- Card background images ----
-        Replace these image paths with your own images.
-        ============================================================ */
+        /* Card backgrounds */
         .card-intro {
             background-image: url('Wedding/(BG)IntroductionCard.png');
             justify-content: flex-start;
-            padding-top: 50px;
+            padding-top: 30px;
         }
         .card-henna {
             background-image: url('Wedding/(BG)henna.png');
@@ -361,13 +332,8 @@
         .card-wedding {
             background-image: url('Wedding/(BG)TheWedding.png');
         }
-        .card-walima {
-            background-image: url('Wedding/(BG)Walima.png');
-        }
 
-        /* ---- Fade-in text elements inside cards ----
-        Each .fade-text fades in with a delay.
-        ============================================================ */
+        /* Fade-text */
         .fade-text {
             opacity: 0;
             transform: translateY(20px);
@@ -377,7 +343,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Delay classes – adjust these to control the order of appearance */
         .delay-1 {
             transition-delay: 0.1s;
         }
@@ -394,7 +359,7 @@
             transition-delay: 1.2s;
         }
 
-        /* ---- Typography ---- */
+        /* Typography */
         h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 2.5rem;
@@ -426,100 +391,75 @@
             font-size: 1rem;
             color: #4e342e;
         }
-        .card .sub-detail {
-            font-size: 0.92rem;
+
+        /* ---- INTRO CARD SPECIFIC ---- */
+        .invitation-intro {
+            width: 100%;
+            padding: 0 10px;
+            margin-top: 4px;
+        }
+        .invitation-intro .basmala-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.7rem;
+            line-height: 1.6;
+            color: var(--quran-gold);
+            direction: rtl;
+            margin-bottom: 2px;
+        }
+        .invitation-intro .basmala-english {
+            font-size: 1.0rem;
             color: #5d4037;
             font-style: italic;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
         }
-
-        /* ============================================================
-        QURAN SECTION – appears only on the intro card
-        Shows for 3 seconds then disappears forever.
-        ============================================================ */
-        .quran-wrapper {
-            width: 100%;
-            padding: 20px 30px;
-            margin: 0 auto 10px auto;
-            /* 👇 PUSH QURAN SECTION DOWNWARDS – increase this value to move it lower */
-            margin-top: 28px;
-            border-top: 2px solid rgba(184, 134, 11, 0.25);
-            border-bottom: 2px solid rgba(184, 134, 11, 0.25);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 1s ease, opacity 1s ease, padding 0.5s ease, margin 0.5s ease, border 0.5s ease;
-            padding: 0 30px;
-            margin: 28px auto 0 auto;
-            /* 👈 consistent with margin-top above */
-            border-width: 0;
+        .invitation-intro .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.0rem;
+            color: var(--text-main);
+            line-height: 1.3;
+            margin: 6px 0;
         }
-        /* When visible, the Quran section expands and fades in */
-        .quran-wrapper.visible {
-            max-height: 280px;
-            opacity: 1;
-            padding: 20px 30px;
-            margin: 28px auto 10px auto;
-            /* 👈 keep margin-top consistent */
-            border-width: 2px;
+        .invitation-intro .couple-names .and-word {
+            font-family: 'Georgia', serif;
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            font-style: italic;
         }
-        /* After disappearing, it's hidden completely */
-        .quran-wrapper.hidden-forever {
-            display: none !important;
+        .invitation-intro .parent-line {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+            margin: 2px 0;
         }
-
-        .quran-arabic {
+        .invitation-intro .dua-arabic {
             font-family: 'Amiri', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             line-height: 1.8;
             color: var(--quran-gold);
             direction: rtl;
-            margin-bottom: 4px;
-            font-weight: 300;
-            text-align: center;
+            margin: 10px 0 2px 0;
         }
-        .quran-translation {
+        .invitation-intro .dua-translation {
             font-size: 0.95rem;
             color: #5d4037;
             font-style: italic;
-            letter-spacing: 0.3px;
-            text-align: center;
+            line-height: 1.5;
+            margin: 2px 0 0 0;
         }
-        .quran-surah {
-            font-size: 0.65rem;
-            color: #8d6e63;
-            margin-top: 3px;
-            letter-spacing: 1px;
-            text-align: center;
+        .invitation-intro .venue-line {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            margin: 2px 0;
         }
-
-        /* ============================================================
-        INVITATION CONTENT – appears after the Quran disappears
-        ============================================================ */
-        .invitation-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            width: 100%;
-            padding: 0 8px;
-        }
-        .invitation-content.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .invitation-intro .date-time {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin: 2px 0;
         }
 
-        .invitation-message {
-            margin-top: -6px;
-        }
-
-        /* ============================================================
-        LOCATION PILL BUTTONS
-        Each card has a unique colour that matches its theme.
-        ============================================================ */
+        /* ---- LOCATION PILL ---- */
         .location-pill {
             display: inline-flex;
             align-items: center;
@@ -547,7 +487,6 @@
             transform: scale(1.05);
         }
 
-        /* Card-specific pill colours – change these to match your theme */
         .card-henna .location-pill {
             background: #c9a84c;
         }
@@ -566,23 +505,8 @@
         .card-wedding .location-pill:hover {
             background: #8b1a1a;
         }
-        .card-walima .location-pill {
-            background: #6a1b9a;
-        }
-        .card-walima .location-pill:hover {
-            background: #4a148c;
-        }
-        /* Intro card – subtle neutral colour (rarely used) */
-        .card-intro .location-pill {
-            background: var(--text-main);
-        }
-        .card-intro .location-pill:hover {
-            background: var(--text-sub);
-        }
 
-        /* ============================================================
-        MUSIC TOGGLE BUTTON – fixed at bottom-right
-        ============================================================ */
+        /* ---- MUSIC TOGGLE ---- */
         #music-toggle {
             position: fixed;
             bottom: 20px;
@@ -608,8 +532,8 @@
         }
 
         /* ============================================================
-        RESPONSIVE TWEAKS – adjust for smaller screens
-        ============================================================ */
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 480px) {
             .tap-hint {
                 font-size: 1.6rem;
@@ -625,46 +549,47 @@
                 font-size: 0.9rem;
                 max-width: 95%;
             }
-            .quran-arabic {
-                font-size: 1.2rem;
-            }
-            .quran-translation {
-                font-size: 0.82rem;
-            }
             .card {
                 padding: 18px 12px;
             }
             .card-intro {
-                padding-top: 150px;
+                padding-top: 60px;
             }
-            /* Push Quran down slightly less on small screens */
-            .quran-wrapper {
-                margin-top: 18px;
+            .invitation-intro .basmala-arabic {
+                font-size: 1.3rem;
             }
-            .quran-wrapper.visible {
-                margin-top: 18px;
-                padding: 14px 18px;
-                max-height: 220px;
+            .invitation-intro .couple-names {
+                font-size: 1.5rem;
+            }
+            .invitation-intro .dua-arabic {
+                font-size: 1.1rem;
+            }
+            .invitation-intro .dua-translation {
+                font-size: 0.82rem;
+            }
+            .invitation-intro .basmala-english {
+                font-size: 0.85rem;
             }
         }
 
         @media (max-width: 380px) {
-            .quran-arabic {
-                font-size: 1rem;
+            .card-intro {
+                padding-top: 40px;
             }
-            .quran-translation {
+            .invitation-intro .basmala-arabic {
+                font-size: 1.1rem;
+            }
+            .invitation-intro .couple-names {
+                font-size: 1.2rem;
+            }
+            .invitation-intro .dua-arabic {
+                font-size: 0.95rem;
+            }
+            .invitation-intro .dua-translation {
                 font-size: 0.72rem;
             }
-            .quran-wrapper.visible {
-                padding: 10px 14px;
-                max-height: 180px;
-                margin-top: 12px;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-            .card h2 {
-                font-size: 1.3rem;
+            .invitation-intro .basmala-english {
+                font-size: 0.75rem;
             }
             .card p {
                 font-size: 0.78rem;
@@ -678,568 +603,461 @@
 </head>
 <body>
 
-<!-- ============================================================
-LOADING OVERLAY
-============================================================ -->
-<div id="loading-overlay">
-    <div class="loader-ring"></div>
-    <div class="loader-text">Loading...</div>
-    <div class="loader-progress"><div class="loader-progress-bar" id="progress-bar"></div></div>
-    <div class="loader-percent" id="progress-percent">0%</div>
-</div>
-
-<!-- ============================================================
-MAIN APP
-============================================================ -->
-<div id="app">
-
     <!-- ============================================================
-    BACKGROUND MUSIC
-    Replace the src with your own audio file.
+    LOADING OVERLAY
     ============================================================ -->
-    <audio id="bgMusic" preload="auto" loop>
-        <source src="Wedding/Jashn-E-Bahaaraa-Flute.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- ============================================================
-    ENVELOPE – tap to open
-    ============================================================ -->
-    <div class="envelope-container" id="envelope" onclick="openEnvelope()">
-        <div class="tap-hint">Tap to Open</div>
-        <div class="envelope-half left-half"></div>
-        <div class="envelope-half right-half"></div>
-        <div class="envelope-base"></div>
+    <div id="loading-overlay">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Loading...</div>
+        <div class="loader-progress"><div class="loader-progress-bar" id="progress-bar"></div></div>
+        <div class="loader-percent" id="progress-percent">0%</div>
     </div>
 
     <!-- ============================================================
-    COUNTDOWN TIMER
+    MAIN APP
     ============================================================ -->
-    <div id="timer-container">
-        <div class="timer-label" id="timer-target-name">Countdown</div>
-        <div id="timer-display">Calculating...</div>
-    </div>
+    <div id="app">
 
-    <!-- ============================================================
-    SLIDER – contains all 5 cards
-    ============================================================ -->
-    <div class="slider" id="slider">
-        <div class="swipe-hint">Swipe to see more →</div>
+        <!-- Background Music -->
+        <audio id="bgMusic" preload="auto" loop>
+            <source src="Wedding/Jashn-E-Bahaaraa-Flute.mp3" type="audio/mpeg">
+        </audio>
 
         <!-- ============================================================
-        CARD 0 – INTRODUCTION CARD
-        Shows Quran verse first, then invitation text.
+        ENVELOPE – tap to open
         ============================================================ -->
-        <div class="card card-intro" id="slide-0">
+        <div class="envelope-container" id="envelope" onclick="openEnvelope()">
+            <div class="tap-hint">Tap to Open</div>
+            <div class="envelope-half left-half"></div>
+            <div class="envelope-half right-half"></div>
+            <div class="envelope-base"></div>
+        </div>
 
-            <!-- Quran section – appears for 3 seconds then disappears -->
-            <div class="quran-wrapper" id="quranWrapper">
-                <!-- 👇 CHANGE THE ARABIC TEXT, TRANSLATION, AND SURAH HERE -->
-                <div class="quran-arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
-                <div class="quran-translation">"And of His signs is that He created for you from yourselves mates that you may find tranquility in them, and He placed between you affection and mercy."</div>
-                <div class="quran-surah">— Surah Ar-Rum (30:21)</div>
-            </div>
+        <!-- ============================================================
+        COUNTDOWN TIMER
+        ============================================================ -->
+        <div id="timer-container">
+            <div class="timer-label" id="timer-target-name">Countdown</div>
+            <div id="timer-display">Calculating...</div>
+        </div>
 
-            <!-- Invitation content – appears after Quran disappears -->
-            <div class="invitation-content" id="invitationContent">
-                <!-- 👇 CHANGE NAMES, TITLES, AND MESSAGES HERE -->
-                <h1 class="fade-text delay-1">Invitation</h1>
-                <div class="invitation-message">
-                    <p class="fade-text delay-2">
-                        We cordially invite you to celebrate the Wedding events of our only son<br />
-                        <strong style="font-size:1.15rem; color:#3e2c28;">Mohammed Tazrian</strong><br />
-                        with<br />
-                        <strong style="font-size:1.15rem; color:#3e2c28;">Tashfiha Faruk</strong>
+        <!-- ============================================================
+        SLIDER – 4 cards: Intro, Holud, Akt, Wedding (Walima removed)
+        ============================================================ -->
+        <div class="slider" id="slider">
+            <div class="swipe-hint">Swipe to see more →</div>
+
+            <!-- ============================================================
+            CARD 0 – INTRODUCTION CARD (full invitation)
+            ============================================================ -->
+            <div class="card card-intro" id="slide-0">
+                <div class="invitation-intro">
+                    <!-- Basmala -->
+                    <div class="basmala-arabic fade-text delay-1">الرَّحِيم</div>
+                    <div class="basmala-english fade-text delay-2">
+                        Bismillāhir-Rahmānir-Rahīm<br />
+                        <span style="font-size:0.9rem;">In the name of Allah, the Most Compassionate, the Most Merciful</span>
+                    </div>
+
+                    <!-- Invitation line -->
+                    <p class="fade-text delay-3" style="font-size:1.0rem; margin-top:4px; font-style:italic;">
+                        You are cordially invited to the wedding of
                     </p>
-                    <p class="fade-text delay-3" style="font-size:0.95rem;">
-                        Daughter of Mohammed Faruk &amp; Rasheda Begum
+
+                    <!-- Bride & Groom names -->
+                    <div class="couple-names fade-text delay-4">
+                        Salwa Ibnat Khan
+                    </div>
+                    <p class="fade-text delay-4" style="font-size:0.9rem; color:var(--text-sub); margin:-2px 0 0 0;">
+                        Daughter of Md Shahed Sarwar Khan and Farzana Islam
                     </p>
-                    <p class="fade-text delay-4" style="font-style:italic;">
-                        Regards<br />
-                        <strong>Mohammed Musa &amp; Nasrin Sultana</strong>
+
+                    <div class="couple-names fade-text delay-4" style="font-size:1.4rem; margin:0;">
+                        <span class="and-word">with</span>
+                    </div>
+
+                    <div class="couple-names fade-text delay-4">
+                        Mohammed Safique Hossain
+                    </div>
+                    <p class="fade-text delay-4" style="font-size:0.9rem; color:var(--text-sub); margin:-2px 0 0 0;">
+                        Son of Mohammed Jahangir Hossain Khoshnabish and Jesmin Ara
                     </p>
+
+                    <!-- Gracious presence -->
+                    <p class="fade-text delay-5" style="font-size:0.95rem; font-style:italic; margin-top:6px;">
+                        Your gracious presence and sincere du'as will be a blessing<br />
+                        as we celebrate this joyous occasion.
+                    </p>
+
+                    <!-- Date, Time, Venue -->
+                    <div class="date-time fade-text delay-5">
+                        📅 23 July, 2026 &nbsp;·&nbsp; 🕖 7:00pm
+                    </div>
+                    <div class="venue-line fade-text delay-5">
+                        📍 Senamalancha 545 Bir Uttam Ziaur Rahman Rd
+                    </div>
+
+                    <!-- Dua -->
+                    <div class="dua-arabic fade-text delay-5">
+                        بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرِ
+                    </div>
+                    <div class="dua-translation fade-text delay-5">
+                        Bārakallāhu lakumā, wa bāraka 'alaykumā, wa jama'a baynakumā fi khayr.
+                    </div>
+                    <div class="dua-translation fade-text delay-5" style="font-size:0.85rem; margin-top:0;">
+                        "May Allah bless you both, shower His blessings upon you both,<br />
+                        and bring you together in goodness."
+                    </div>
                 </div>
             </div>
+
+            <!-- ============================================================
+            CARD 1 – HOLUD (HENNA)
+            ============================================================ -->
+            <div class="card card-henna" id="slide-1">
+                <h2 class="fade-text delay-1">Gaye Holud</h2>
+                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Bagan Bari (Isahoque Haji)</span></p>
+                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">4 September 2026</span></p>
+                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">7:00 PM</span></p>
+                <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
+            </div>
+
+            <!-- ============================================================
+            CARD 2 – AKT CEREMONY
+            ============================================================ -->
+            <div class="card card-akt" id="slide-2">
+                <h2 class="fade-text delay-1">Akt Ceremony</h2>
+                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Railway Masjid</span></p>
+                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">5 September 2026</span></p>
+                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">TBA</span></p>
+                <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
+            </div>
+
+            <!-- ============================================================
+            CARD 3 – WEDDING (no Walima)
+            ============================================================ -->
+            <div class="card card-wedding" id="slide-3">
+                <h2 class="fade-text delay-1">The Wedding</h2>
+                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">King of Chittagong</span></p>
+                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">10 September 2026</span></p>
+                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">8:00 PM</span></p>
+                <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
+            </div>
         </div>
 
-        <!-- ============================================================
-        CARD 1 – HOLUD (HENNA)
-        ============================================================ -->
-        <div class="card card-henna" id="slide-1">
-            <h2 class="fade-text delay-1">Gaye Holud</h2>
-            <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Bagan Bari (Isahoque Haji)</span></p>
-            <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">4 September 2026</span></p>
-            <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">7:00 PM</span></p>
-            <!-- 👇 CHANGE THE MAP LINK HERE -->
-            <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
-        </div>
-
-        <!-- ============================================================
-        CARD 2 – AKT CEREMONY
-        ============================================================ -->
-        <div class="card card-akt" id="slide-2">
-            <h2 class="fade-text delay-1">Akt Ceremony</h2>
-            <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Railway Masjid</span></p>
-            <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">5 September 2026</span></p>
-            <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">TBA</span></p>
-            <!-- 👇 CHANGE THE MAP LINK HERE -->
-            <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
-        </div>
-
-        <!-- ============================================================
-        CARD 3 – WEDDING
-        ============================================================ -->
-        <div class="card card-wedding" id="slide-3">
-            <h2 class="fade-text delay-1">The Wedding</h2>
-            <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">King of Chittagong</span></p>
-            <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">10 September 2026</span></p>
-            <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">8:00 PM</span></p>
-            <!-- 👇 CHANGE THE MAP LINK HERE -->
-            <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
-        </div>
-
-        <!-- ============================================================
-        CARD 4 – WALIMA
-        ============================================================ -->
-        <div class="card card-walima" id="slide-4">
-            <h2 class="fade-text delay-1">Walima</h2>
-            <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">King of Chittagong</span></p>
-            <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">12 September 2026</span></p>
-            <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">8:00 PM</span></p>
-            <!-- 👇 CHANGE THE MAP LINK HERE -->
-            <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
-        </div>
+        <!-- Music toggle -->
+        <button id="music-toggle" aria-label="Toggle music">🔊</button>
     </div>
 
     <!-- ============================================================
-    MUSIC TOGGLE BUTTON
+    JAVASCRIPT
     ============================================================ -->
-    <button id="music-toggle" aria-label="Toggle music">🔊</button>
-</div>
+    <script>
+        /**
+         * ============================================================
+         * CONFIGURATION
+         * ============================================================
+         */
 
-<!-- ============================================================
-JAVASCRIPT
-============================================================ -->
-<script>
-    /**
-     * ============================================================
-     * CONFIGURATION – CHANGE THESE VALUES TO CUSTOMISE YOUR INVITE
-     * ============================================================
-     */
+        // Total slides: Intro + Holud + Akt + Wedding = 4 (Walima removed)
+        const totalSlides = 4;
 
-    // Total number of slides (cards). Default is 5.
-    const totalSlides = 5;
+        // Events for countdown – Walima removed
+        const weddingEvents = [
+            { name: "Holud", month: 8, day: 4 }, // 4 Sep 2026
+            { name: "Akt", month: 8, day: 5 }, // 5 Sep 2026
+            { name: "Wedding", month: 8, day: 10 } // 10 Sep 2026
+        ];
 
-    /**
-     * Event list for the countdown timer.
-     * Each event has a name, month (0-indexed: 0=Jan, 11=Dec), and day.
-     * The countdown will show the time remaining until the next event.
-     * All events are at 8:00 PM (20:00) on their respective days.
-     * Change these to match your actual event dates.
-     */
-    const weddingEvents = [
-        { name: "Holud", month: 8, day: 4 }, // 4 September 2026 (month 8 = Sep)
-        { name: "Akt", month: 8, day: 5 }, // 5 September 2026
-        { name: "Wedding", month: 8, day: 10 }, // 10 September 2026
-        { name: "Walima", month: 8, day: 12 } // 12 September 2026
-    ];
+        const celebrationDuration = 3 * 60 * 60 * 1000;
 
-    /**
-     * Duration (in milliseconds) that each event is considered "active"
-     * after its start time. Default is 3 hours (3 * 60 * 60 * 1000).
-     * After this, the countdown moves to the next event.
-     */
-    const celebrationDuration = 3 * 60 * 60 * 1000;
+        const imageUrls = [
+            'Wedding/envelopLeft.png',
+            'Wedding/EnvelopRight.png',
+            'Wedding/(BG)IntroductionCard.png',
+            'Wedding/(BG)henna.png',
+            'Wedding/(BG)TheAkt.png',
+            'Wedding/(BG)TheWedding.png'
+        ];
 
-    /**
-     * List of images to preload.
-     * Add any new images you use to this array so they load before the app appears.
-     */
-    const imageUrls = [
-        'Wedding/envelopLeft.png',
-        'Wedding/EnvelopRight.png',
-        'Wedding/(BG)IntroductionCard.png',
-        'Wedding/(BG)henna.png',
-        'Wedding/(BG)TheAkt.png',
-        'Wedding/(BG)TheWedding.png',
-        'Wedding/(BG)Walima.png'
-    ];
+        const swipeThreshold = 40;
 
-    /**
-     * Quran display timing (in milliseconds):
-     * - delayBeforeShow: time after card becomes active before Quran appears
-     * - showDuration: how long the Quran stays visible
-     * - delayBeforeHide: time after hiding before invitation content appears
-     *
-     * Total time from card active to invitation showing =
-     *   delayBeforeShow + showDuration + delayBeforeHide
-     */
-    const quranTiming = {
-        delayBeforeShow: 400, // 0.4s
-        showDuration: 3000, // 3.0s
-        delayBeforeHide: 400 // 0.4s
-    };
+        /**
+         * ============================================================
+         * DOM REFS & STATE
+         * ============================================================
+         */
+        const app = document.getElementById('app');
+        const slider = document.getElementById('slider');
+        const bgMusic = document.getElementById('bgMusic');
+        const timerContainer = document.getElementById('timer-container');
+        const musicToggle = document.getElementById('music-toggle');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const envelope = document.getElementById('envelope');
 
-    /**
-     * Minimum swipe distance (in pixels) required to trigger a slide change.
-     * Also requires horizontal movement > vertical movement * 0.6 to avoid accidental vertical swipes.
-     */
-    const swipeThreshold = 40;
+        let currentSlide = 0;
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        let musicPlaying = false;
+        let envelopeOpened = false;
 
-    /**
-     * End of configuration – do not edit below unless you know what you're doing.
-     * ============================================================
-     */
+        bgMusic.volume = 0.28;
 
-    // ---- DOM references ----
-    const app = document.getElementById('app');
-    const slider = document.getElementById('slider');
-    const bgMusic = document.getElementById('bgMusic');
-    const timerContainer = document.getElementById('timer-container');
-    const musicToggle = document.getElementById('music-toggle');
-    const loadingOverlay = document.getElementById('loading-overlay');
-    const quranWrapper = document.getElementById('quranWrapper');
-    const invitationContent = document.getElementById('invitationContent');
-    const envelope = document.getElementById('envelope');
+        /**
+         * ============================================================
+         * COUNTDOWN TIMER
+         * ============================================================
+         */
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
 
-    // ---- State variables ----
-    let currentSlide = 0;
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-    let musicPlaying = false;
-    let quranAlreadyShown = false;
-    let envelopeOpened = false;
-
-    // Set volume (0.0 to 1.0). Change this to adjust background music volume.
-    bgMusic.volume = 0.28;
-
-    /**
-     * ============================================================
-     * COUNTDOWN TIMER
-     * Updates the timer display with time remaining until the next event.
-     * ============================================================
-     */
-    function updateCountdown() {
-        const now = new Date();
-        const currentYear = now.getFullYear();
-
-        // Build event objects with start and end times
-        const events = weddingEvents.map(e => {
-            const start = new Date(currentYear, e.month, e.day, 20, 0, 0); // 8:00 PM
-            return {
-                name: e.name,
-                startTime: start,
-                endTime: new Date(start.getTime() + celebrationDuration)
-            };
-        });
-
-        // Hide timer on the intro card
-        if (currentSlide === 0) {
-            timerContainer.style.opacity = '0';
-            return;
-        }
-
-        // Find unfinished events (now < endTime)
-        const unfinished = events.filter(e => now < e.endTime);
-        const nameLabel = document.getElementById('timer-target-name');
-        const timeLabel = document.getElementById('timer-display');
-
-        // If all events are over
-        if (unfinished.length === 0) {
-            timerContainer.style.opacity = '1';
-            nameLabel.innerText = "";
-            timeLabel.innerText = "Thanks for celebrating with us";
-            return;
-        }
-
-        timerContainer.style.opacity = '1';
-
-        // Find the event corresponding to the current slide (slide-1 = event index)
-        const eventIndex = currentSlide - 1;
-        let targetEvent = events[eventIndex] && now < events[eventIndex].endTime ?
-            events[eventIndex] :
-            unfinished[0];
-
-        nameLabel.innerText = "Countdown to " + targetEvent.name;
-
-        const diff = targetEvent.startTime - now;
-        if (diff > 0) {
-            const d = Math.floor(diff / 86400000);
-            const h = Math.floor((diff % 86400000) / 3600000);
-            const m = Math.floor((diff % 3600000) / 60000);
-            if (d > 0) {
-                timeLabel.innerText = d + (d === 1 ? " Day " : " Days ") + "to go";
-            } else if (h >= 1) {
-                timeLabel.innerText = h + " Hour to go";
-            } else {
-                timeLabel.innerText = m + " Min to go";
-            }
-        } else {
-            timeLabel.innerText = "Happening Now!";
-        }
-    }
-
-    /**
-     * ============================================================
-     * OPEN ENVELOPE
-     * Called when the user taps/clicks the envelope.
-     * ============================================================
-     */
-    function openEnvelope() {
-        if (envelopeOpened) return;
-        envelopeOpened = true;
-
-        // Animate envelope open
-        envelope.classList.add('open');
-
-        // Show the slider
-        slider.style.display = 'block';
-        updateCountdown();
-
-        // Go to first slide after a short delay
-        setTimeout(() => { goToSlide(0); }, 800);
-
-        // Start background music (if not already playing)
-        if (!musicPlaying) {
-            bgMusic.play().then(() => {
-                musicPlaying = true;
-                musicToggle.textContent = '🔊';
-                musicToggle.classList.add('visible');
-            }).catch(() => {
-                // Autoplay blocked – show muted icon
-                musicToggle.textContent = '🔇';
-                musicToggle.classList.add('visible');
+            const events = weddingEvents.map(e => {
+                const start = new Date(currentYear, e.month, e.day, 20, 0, 0);
+                return {
+                    name: e.name,
+                    startTime: start,
+                    endTime: new Date(start.getTime() + celebrationDuration)
+                };
             });
-        }
-    }
 
-    /**
-     * ============================================================
-     * GO TO SLIDE
-     * Switches to the card at the given index.
-     * ============================================================
-     */
-    function goToSlide(index) {
-        // Remove active class from current slide
-        const prevSlide = document.getElementById(`slide-${currentSlide}`);
-        if (prevSlide) prevSlide.classList.remove('active');
-
-        // Update current index and activate new slide
-        currentSlide = index;
-        const newSlide = document.getElementById(`slide-${currentSlide}`);
-        if (newSlide) newSlide.classList.add('active');
-
-        // Handle swipe hint and Quran logic only on intro card (slide 0)
-        if (currentSlide === 0) {
-            slider.classList.add('show-swipe');
-
-            // Quran sequence: show → wait → hide → show invitation
-            if (!quranAlreadyShown) {
-                // Step 1: show Quran after a short delay
-                setTimeout(() => {
-                    quranWrapper.classList.add('visible');
-                }, quranTiming.delayBeforeShow);
-
-                // Step 2: hide Quran after showDuration
-                setTimeout(() => {
-                    quranWrapper.classList.remove('visible');
-                }, quranTiming.delayBeforeShow + quranTiming.showDuration);
-
-                // Step 3: mark as hidden forever and show invitation content
-                setTimeout(() => {
-                    quranWrapper.classList.add('hidden-forever');
-                    quranAlreadyShown = true;
-                    invitationContent.classList.add('visible');
-                }, quranTiming.delayBeforeShow + quranTiming.showDuration + quranTiming.delayBeforeHide);
-            } else {
-                // If Quran already shown, just show invitation content
-                invitationContent.classList.add('visible');
-            }
-        } else {
-            // Not on intro card – hide swipe hint
-            slider.classList.remove('show-swipe');
-            // Ensure invitation content is visible if we come back to slide 0 later
+            // Hide timer on intro card
             if (currentSlide === 0) {
-                invitationContent.classList.add('visible');
+                timerContainer.style.opacity = '0';
+                return;
+            }
+
+            const unfinished = events.filter(e => now < e.endTime);
+            const nameLabel = document.getElementById('timer-target-name');
+            const timeLabel = document.getElementById('timer-display');
+
+            if (unfinished.length === 0) {
+                timerContainer.style.opacity = '1';
+                nameLabel.innerText = "";
+                timeLabel.innerText = "Thanks for celebrating with us";
+                return;
+            }
+
+            timerContainer.style.opacity = '1';
+
+            const eventIndex = currentSlide - 1;
+            let targetEvent = events[eventIndex] && now < events[eventIndex].endTime ?
+                events[eventIndex] :
+                unfinished[0];
+
+            nameLabel.innerText = "Countdown to " + targetEvent.name;
+
+            const diff = targetEvent.startTime - now;
+            if (diff > 0) {
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                if (d > 0) {
+                    timeLabel.innerText = d + (d === 1 ? " Day " : " Days ") + "to go";
+                } else if (h >= 1) {
+                    timeLabel.innerText = h + " Hour to go";
+                } else {
+                    timeLabel.innerText = m + " Min to go";
+                }
+            } else {
+                timeLabel.innerText = "Happening Now!";
             }
         }
 
-        // Update the countdown timer for the new slide
-        updateCountdown();
-    }
+        /**
+         * ============================================================
+         * OPEN ENVELOPE
+         * ============================================================
+         */
+        function openEnvelope() {
+            if (envelopeOpened) return;
+            envelopeOpened = true;
 
-    /**
-     * ============================================================
-     * SWIPE / DRAG HANDLING
-     * Works on both touch (mobile) and mouse (desktop).
-     * Only changes slide on horizontal swipe past the threshold.
-     * ============================================================
-     */
+            envelope.classList.add('open');
+            slider.style.display = 'block';
+            updateCountdown();
 
-    // ---- Get client X/Y from touch or mouse event ----
-    function getClientX(e) {
-        return e.touches ? e.touches[0].clientX : e.clientX;
-    }
+            setTimeout(() => { goToSlide(0); }, 800);
 
-    function getClientY(e) {
-        return e.touches ? e.touches[0].clientY : e.clientY;
-    }
-
-    // ---- Start drag ----
-    function handleDragStart(e) {
-        // Only work if envelope is open
-        if (!envelopeOpened) return;
-
-        // Only allow drag on the slider itself or its children
-        const target = e.target.closest ? e.target.closest('.slider') : null;
-        if (!target && !e.target.closest('.slider')) return;
-
-        isDragging = true;
-        startX = getClientX(e);
-        startY = getClientY(e);
-
-        // Prevent text selection and default browser behavior
-        e.preventDefault && e.preventDefault();
-    }
-
-    // ---- End drag ----
-    function handleDragEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-
-        // Only work if envelope is open
-        if (!envelopeOpened) return;
-
-        // Get end coordinates
-        const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
-        const endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-
-        const diffX = startX - endX;
-        const diffY = startY - endY;
-
-        // Check if it's a horizontal swipe with enough distance
-        if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 0.6) {
-            if (diffX > 0 && currentSlide < totalSlides - 1) {
-                goToSlide(currentSlide + 1);
-            } else if (diffX < 0 && currentSlide > 0) {
-                goToSlide(currentSlide - 1);
+            if (!musicPlaying) {
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicToggle.textContent = '🔊';
+                    musicToggle.classList.add('visible');
+                }).catch(() => {
+                    musicToggle.textContent = '🔇';
+                    musicToggle.classList.add('visible');
+                });
             }
         }
-    }
 
-    // ---- Move (prevent scrolling during drag) ----
-    function handleDragMove(e) {
-        if (isDragging) {
+        /**
+         * ============================================================
+         * GO TO SLIDE
+         * ============================================================
+         */
+        function goToSlide(index) {
+            const prevSlide = document.getElementById(`slide-${currentSlide}`);
+            if (prevSlide) prevSlide.classList.remove('active');
+
+            currentSlide = index;
+            const newSlide = document.getElementById(`slide-${currentSlide}`);
+            if (newSlide) newSlide.classList.add('active');
+
+            if (currentSlide === 0) {
+                slider.classList.add('show-swipe');
+            } else {
+                slider.classList.remove('show-swipe');
+            }
+
+            updateCountdown();
+        }
+
+        /**
+         * ============================================================
+         * SWIPE / DRAG HANDLING
+         * ============================================================
+         */
+        function getClientX(e) {
+            return e.touches ? e.touches[0].clientX : e.clientX;
+        }
+
+        function getClientY(e) {
+            return e.touches ? e.touches[0].clientY : e.clientY;
+        }
+
+        function handleDragStart(e) {
+            if (!envelopeOpened) return;
+            const target = e.target.closest ? e.target.closest('.slider') : null;
+            if (!target && !e.target.closest('.slider')) return;
+
+            isDragging = true;
+            startX = getClientX(e);
+            startY = getClientY(e);
             e.preventDefault && e.preventDefault();
         }
-    }
 
-    // ---- Attach touch events ----
-    slider.addEventListener('touchstart', handleDragStart, { passive: true });
-    slider.addEventListener('touchend', handleDragEnd, { passive: true });
-    slider.addEventListener('touchmove', handleDragMove, { passive: false });
+        function handleDragEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            if (!envelopeOpened) return;
 
-    // ---- Attach mouse events for desktop ----
-    slider.addEventListener('mousedown', handleDragStart);
-    document.addEventListener('mouseup', handleDragEnd);
-    document.addEventListener('mousemove', handleDragMove);
+            const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+            const endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
 
-    /**
-     * ============================================================
-     * KEYBOARD SUPPORT
-     * Left/Right arrow keys change slides.
-     * ============================================================
-     */
-    document.addEventListener('keydown', function(e) {
-        if (!envelopeOpened) return;
-        if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
-            e.preventDefault();
-            goToSlide(currentSlide + 1);
-        } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
-            e.preventDefault();
-            goToSlide(currentSlide - 1);
-        }
-    });
+            const diffX = startX - endX;
+            const diffY = startY - endY;
 
-    /**
-     * ============================================================
-     * MUSIC TOGGLE
-     * ============================================================
-     */
-    musicToggle.addEventListener('click', function() {
-        if (musicPlaying) {
-            bgMusic.pause();
-            musicPlaying = false;
-            musicToggle.textContent = '🔇';
-        } else {
-            bgMusic.play().then(() => {
-                musicPlaying = true;
-                musicToggle.textContent = '🔊';
-            });
-        }
-    });
-
-    /**
-     * ============================================================
-     * IMAGE PRELOADING & INIT
-     * ============================================================
-     */
-    function preloadImages(urls) {
-        return new Promise((resolve) => {
-            let loaded = 0;
-            const total = urls.length;
-            const progressBar = document.getElementById('progress-bar');
-            const percentLabel = document.getElementById('progress-percent');
-
-            function updateProgress() {
-                const pct = Math.round((loaded / total) * 100);
-                progressBar.style.width = pct + '%';
-                percentLabel.textContent = pct + '%';
-            }
-
-            urls.forEach((url) => {
-                const img = new Image();
-                img.onload = () => {
-                    loaded++;
-                    updateProgress();
-                    if (loaded === total) resolve();
-                };
-                img.onerror = () => {
-                    loaded++;
-                    updateProgress();
-                    if (loaded === total) resolve();
-                };
-                img.src = url;
-            });
-
-            // Fallback: resolve after 8 seconds even if images fail
-            setTimeout(() => {
-                if (loaded < total) {
-                    loaded = total;
-                    updateProgress();
-                    resolve();
+            if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 0.6) {
+                if (diffX > 0 && currentSlide < totalSlides - 1) {
+                    goToSlide(currentSlide + 1);
+                } else if (diffX < 0 && currentSlide > 0) {
+                    goToSlide(currentSlide - 1);
                 }
-            }, 8000);
+            }
+        }
+
+        function handleDragMove(e) {
+            if (isDragging) {
+                e.preventDefault && e.preventDefault();
+            }
+        }
+
+        slider.addEventListener('touchstart', handleDragStart, { passive: true });
+        slider.addEventListener('touchend', handleDragEnd, { passive: true });
+        slider.addEventListener('touchmove', handleDragMove, { passive: false });
+
+        slider.addEventListener('mousedown', handleDragStart);
+        document.addEventListener('mouseup', handleDragEnd);
+        document.addEventListener('mousemove', handleDragMove);
+
+        /**
+         * ============================================================
+         * KEYBOARD
+         * ============================================================
+         */
+        document.addEventListener('keydown', function(e) {
+            if (!envelopeOpened) return;
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                e.preventDefault();
+                goToSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                e.preventDefault();
+                goToSlide(currentSlide - 1);
+            }
         });
-    }
 
-    /**
-     * ============================================================
-     * INITIALISE
-     * Preload images, then show the app.
-     * ============================================================
-     */
-    async function init() {
-        await preloadImages(imageUrls);
-        loadingOverlay.classList.add('hidden');
-        app.classList.add('ready');
-        updateCountdown();
-        // Update countdown every minute
-        setInterval(updateCountdown, 60000);
-    }
+        /**
+         * ============================================================
+         * MUSIC TOGGLE
+         * ============================================================
+         */
+        musicToggle.addEventListener('click', function() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicPlaying = false;
+                musicToggle.textContent = '🔇';
+            } else {
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicToggle.textContent = '🔊';
+                });
+            }
+        });
 
-    // Start the app
-    init();
-</script>
+        /**
+         * ============================================================
+         * IMAGE PRELOADING & INIT
+         * ============================================================
+         */
+        function preloadImages(urls) {
+            return new Promise((resolve) => {
+                let loaded = 0;
+                const total = urls.length;
+                const progressBar = document.getElementById('progress-bar');
+                const percentLabel = document.getElementById('progress-percent');
+
+                function updateProgress() {
+                    const pct = Math.round((loaded / total) * 100);
+                    progressBar.style.width = pct + '%';
+                    percentLabel.textContent = pct + '%';
+                }
+
+                urls.forEach((url) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loaded++;
+                        updateProgress();
+                        if (loaded === total) resolve();
+                    };
+                    img.onerror = () => {
+                        loaded++;
+                        updateProgress();
+                        if (loaded === total) resolve();
+                    };
+                    img.src = url;
+                });
+
+                setTimeout(() => {
+                    if (loaded < total) {
+                        loaded = total;
+                        updateProgress();
+                        resolve();
+                    }
+                }, 8000);
+            });
+        }
+
+        async function init() {
+            await preloadImages(imageUrls);
+            loadingOverlay.classList.add('hidden');
+            app.classList.add('ready');
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+        }
+
+        init();
+    </script>
 </body>
 </html>
