@@ -326,9 +326,6 @@
         .card-henna {
             background-image: url('Wedding/(BG)henna.png');
         }
-        .card-akt {
-            background-image: url('Wedding/(BG)TheAkt.png');
-        }
         .card-wedding {
             background-image: url('Wedding/(BG)TheWedding.png');
         }
@@ -505,12 +502,6 @@
         .card-henna .location-pill:hover {
             background: #b8973a;
         }
-        .card-akt .location-pill {
-            background: #2e7d32;
-        }
-        .card-akt .location-pill:hover {
-            background: #1e5a22;
-        }
         .card-wedding .location-pill {
             background: #b22234;
         }
@@ -672,7 +663,7 @@
         </div>
 
         <!-- ============================================================
-        SLIDER – 4 cards: Intro, Holud, Akt, Wedding (Walima removed)
+        SLIDER – 3 cards: Intro, Holud, Wedding (Akt & Walima removed)
         ============================================================ -->
         <div class="slider" id="slider">
             <div class="swipe-hint">Swipe to see more →</div>
@@ -724,7 +715,7 @@
             </div>
 
             <!-- ============================================================
-            CARD 1 – GAYE HOLUD (updated: 20 July, 8:00 pm, Uttara Club)
+            CARD 1 – GAYE HOLUD (20 July, 8:00 pm, Uttara Club)
             ============================================================ -->
             <div class="card card-henna" id="slide-1">
                 <h2 class="fade-text delay-1">Gaye Holud</h2>
@@ -735,20 +726,9 @@
             </div>
 
             <!-- ============================================================
-            CARD 2 – AKT CEREMONY (kept as-is from original)
+            CARD 2 – WEDDING (23 July, 7:00 pm, Senamalancha + Dua)
             ============================================================ -->
-            <div class="card card-akt" id="slide-2">
-                <h2 class="fade-text delay-1">Akt Ceremony</h2>
-                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Railway Masjid</span></p>
-                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">5 September 2026</span></p>
-                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">TBA</span></p>
-                <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
-            </div>
-
-            <!-- ============================================================
-            CARD 3 – WEDDING (updated: 23 July, 7:00 pm, Senamalancha + Dua)
-            ============================================================ -->
-            <div class="card card-wedding" id="slide-3">
+            <div class="card card-wedding" id="slide-2">
                 <h2 class="fade-text delay-1">The Wedding</h2>
 
                 <!-- Dua section -->
@@ -788,13 +768,12 @@
          * ============================================================
          */
 
-        // Total slides: Intro + Holud + Akt + Wedding = 4 (Walima removed)
-        const totalSlides = 4;
+        // Total slides: Intro + Holud + Wedding = 3 (Akt & Walima removed)
+        const totalSlides = 3;
 
-        // Events for countdown – updated dates (Walima removed)
+        // Events for countdown – only Holud and Wedding remain
         const weddingEvents = [
-            { name: "Holud", month: 6, day: 20 }, // 20 July 2026 (month 6 = Jul)
-            { name: "Akt", month: 8, day: 5 }, // 5 September 2026
+            { name: "Holud", month: 6, day: 20 }, // 20 July 2026
             { name: "Wedding", month: 6, day: 23 } // 23 July 2026
         ];
 
@@ -805,7 +784,6 @@
             'Wedding/EnvelopRight.png',
             'Wedding/(BG)IntroductionCard.png',
             'Wedding/(BG)henna.png',
-            'Wedding/(BG)TheAkt.png',
             'Wedding/(BG)TheWedding.png'
         ];
 
@@ -870,6 +848,7 @@
 
             timerContainer.style.opacity = '1';
 
+            // Slide 1 -> Holud (index 0), Slide 2 -> Wedding (index 1)
             const eventIndex = currentSlide - 1;
             let targetEvent = events[eventIndex] && now < events[eventIndex].endTime ?
                 events[eventIndex] :
