@@ -353,10 +353,13 @@
             transition-delay: 1s;
         }
         .delay-4 {
-            transition-delay: 1s;
+            transition-delay: 1.2s;
         }
         .delay-5 {
-            transition-delay: 1.2s;
+            transition-delay: 1.4s;
+        }
+        .delay-6 {
+            transition-delay: 1.6s;
         }
 
         /* Typography */
@@ -400,7 +403,7 @@
         }
         .invitation-intro .basmala-arabic {
             font-family: 'Amiri', serif;
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             line-height: 1.6;
             color: var(--quran-gold);
             direction: rtl;
@@ -410,15 +413,21 @@
             font-size: 1.0rem;
             color: #5d4037;
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: 0.3px;
+        }
+        .invitation-intro .invite-line {
+            font-size: 1.0rem;
+            color: var(--text-sub);
+            font-style: italic;
+            margin: 2px 0;
         }
         .invitation-intro .couple-names {
             font-family: 'Great Vibes', cursive;
             font-size: 2.0rem;
             color: var(--text-main);
             line-height: 1.3;
-            margin: 6px 0;
+            margin: 4px 0;
         }
         .invitation-intro .couple-names .and-word {
             font-family: 'Georgia', serif;
@@ -427,35 +436,38 @@
             font-style: italic;
         }
         .invitation-intro .parent-line {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--text-sub);
             line-height: 1.5;
             margin: 2px 0;
         }
-        .invitation-intro .dua-arabic {
+        .invitation-intro .blessing-line {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            font-style: italic;
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        /* ---- WEDDING CARD DUAS ---- */
+        .wedding-dua {
+            margin-top: 4px;
+            width: 100%;
+            padding: 0 6px;
+        }
+        .wedding-dua .dua-arabic {
             font-family: 'Amiri', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             line-height: 1.8;
             color: var(--quran-gold);
             direction: rtl;
-            margin: 10px 0 2px 0;
+            margin: 4px 0;
         }
-        .invitation-intro .dua-translation {
+        .wedding-dua .dua-translation {
             font-size: 0.95rem;
             color: #5d4037;
             font-style: italic;
             line-height: 1.5;
-            margin: 2px 0 0 0;
-        }
-        .invitation-intro .venue-line {
-            font-size: 0.95rem;
-            color: var(--text-sub);
-            margin: 2px 0;
-        }
-        .invitation-intro .date-time {
-            font-size: 1.05rem;
-            color: var(--text-main);
-            font-weight: 600;
             margin: 2px 0;
         }
 
@@ -470,7 +482,7 @@
             text-decoration: none;
             font-family: 'Georgia', serif;
             font-size: 0.9rem;
-            margin-top: 20px;
+            margin-top: 16px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             opacity: 0;
@@ -553,7 +565,7 @@
                 padding: 18px 12px;
             }
             .card-intro {
-                padding-top: 60px;
+                padding-top: 50px;
             }
             .invitation-intro .basmala-arabic {
                 font-size: 1.3rem;
@@ -561,20 +573,29 @@
             .invitation-intro .couple-names {
                 font-size: 1.5rem;
             }
-            .invitation-intro .dua-arabic {
-                font-size: 1.1rem;
-            }
-            .invitation-intro .dua-translation {
-                font-size: 0.82rem;
-            }
             .invitation-intro .basmala-english {
                 font-size: 0.85rem;
+            }
+            .invitation-intro .invite-line {
+                font-size: 0.85rem;
+            }
+            .invitation-intro .parent-line {
+                font-size: 0.8rem;
+            }
+            .invitation-intro .blessing-line {
+                font-size: 0.82rem;
+            }
+            .wedding-dua .dua-arabic {
+                font-size: 1.1rem;
+            }
+            .wedding-dua .dua-translation {
+                font-size: 0.82rem;
             }
         }
 
         @media (max-width: 380px) {
             .card-intro {
-                padding-top: 40px;
+                padding-top: 30px;
             }
             .invitation-intro .basmala-arabic {
                 font-size: 1.1rem;
@@ -582,14 +603,23 @@
             .invitation-intro .couple-names {
                 font-size: 1.2rem;
             }
-            .invitation-intro .dua-arabic {
-                font-size: 0.95rem;
-            }
-            .invitation-intro .dua-translation {
-                font-size: 0.72rem;
-            }
             .invitation-intro .basmala-english {
                 font-size: 0.75rem;
+            }
+            .invitation-intro .invite-line {
+                font-size: 0.75rem;
+            }
+            .invitation-intro .parent-line {
+                font-size: 0.7rem;
+            }
+            .invitation-intro .blessing-line {
+                font-size: 0.72rem;
+            }
+            .wedding-dua .dua-arabic {
+                font-size: 0.95rem;
+            }
+            .wedding-dua .dua-translation {
+                font-size: 0.72rem;
             }
             .card p {
                 font-size: 0.78rem;
@@ -648,7 +678,7 @@
             <div class="swipe-hint">Swipe to see more →</div>
 
             <!-- ============================================================
-            CARD 0 – INTRODUCTION CARD (full invitation)
+            CARD 0 – INTRODUCTION CARD (full invitation text)
             ============================================================ -->
             <div class="card card-intro" id="slide-0">
                 <div class="invitation-intro">
@@ -660,70 +690,52 @@
                     </div>
 
                     <!-- Invitation line -->
-                    <p class="fade-text delay-3" style="font-size:1.0rem; margin-top:4px; font-style:italic;">
+                    <p class="invite-line fade-text delay-3">
                         You are cordially invited to the wedding of
                     </p>
 
-                    <!-- Bride & Groom names -->
+                    <!-- Bride name -->
                     <div class="couple-names fade-text delay-4">
                         Salwa Ibnat Khan
                     </div>
-                    <p class="fade-text delay-4" style="font-size:0.9rem; color:var(--text-sub); margin:-2px 0 0 0;">
+                    <p class="parent-line fade-text delay-4">
                         Daughter of Md Shahed Sarwar Khan and Farzana Islam
                     </p>
 
+                    <!-- "with" -->
                     <div class="couple-names fade-text delay-4" style="font-size:1.4rem; margin:0;">
                         <span class="and-word">with</span>
                     </div>
 
+                    <!-- Groom name -->
                     <div class="couple-names fade-text delay-4">
                         Mohammed Safique Hossain
                     </div>
-                    <p class="fade-text delay-4" style="font-size:0.9rem; color:var(--text-sub); margin:-2px 0 0 0;">
+                    <p class="parent-line fade-text delay-4">
                         Son of Mohammed Jahangir Hossain Khoshnabish and Jesmin Ara
                     </p>
 
-                    <!-- Gracious presence -->
-                    <p class="fade-text delay-5" style="font-size:0.95rem; font-style:italic; margin-top:6px;">
+                    <!-- Blessing line -->
+                    <p class="blessing-line fade-text delay-5">
                         Your gracious presence and sincere du'as will be a blessing<br />
                         as we celebrate this joyous occasion.
                     </p>
-
-                    <!-- Date, Time, Venue -->
-                    <div class="date-time fade-text delay-5">
-                        📅 23 July, 2026 &nbsp;·&nbsp; 🕖 7:00pm
-                    </div>
-                    <div class="venue-line fade-text delay-5">
-                        📍 Senamalancha 545 Bir Uttam Ziaur Rahman Rd
-                    </div>
-
-                    <!-- Dua -->
-                    <div class="dua-arabic fade-text delay-5">
-                        بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرِ
-                    </div>
-                    <div class="dua-translation fade-text delay-5">
-                        Bārakallāhu lakumā, wa bāraka 'alaykumā, wa jama'a baynakumā fi khayr.
-                    </div>
-                    <div class="dua-translation fade-text delay-5" style="font-size:0.85rem; margin-top:0;">
-                        "May Allah bless you both, shower His blessings upon you both,<br />
-                        and bring you together in goodness."
-                    </div>
                 </div>
             </div>
 
             <!-- ============================================================
-            CARD 1 – HOLUD (HENNA)
+            CARD 1 – GAYE HOLUD (updated: 20 July, 8:00 pm, Uttara Club)
             ============================================================ -->
             <div class="card card-henna" id="slide-1">
                 <h2 class="fade-text delay-1">Gaye Holud</h2>
-                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Bagan Bari (Isahoque Haji)</span></p>
-                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">4 September 2026</span></p>
-                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">7:00 PM</span></p>
+                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Uttara Club</span></p>
+                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">20 July 2026</span></p>
+                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">8:00 PM</span></p>
                 <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
             </div>
 
             <!-- ============================================================
-            CARD 2 – AKT CEREMONY
+            CARD 2 – AKT CEREMONY (kept as-is from original)
             ============================================================ -->
             <div class="card card-akt" id="slide-2">
                 <h2 class="fade-text delay-1">Akt Ceremony</h2>
@@ -734,13 +746,30 @@
             </div>
 
             <!-- ============================================================
-            CARD 3 – WEDDING (no Walima)
+            CARD 3 – WEDDING (updated: 23 July, 7:00 pm, Senamalancha + Dua)
             ============================================================ -->
             <div class="card card-wedding" id="slide-3">
                 <h2 class="fade-text delay-1">The Wedding</h2>
-                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">King of Chittagong</span></p>
-                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">10 September 2026</span></p>
-                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">8:00 PM</span></p>
+
+                <!-- Dua section -->
+                <div class="wedding-dua">
+                    <div class="dua-arabic fade-text delay-2">
+                        بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرِ
+                    </div>
+                    <div class="dua-translation fade-text delay-3">
+                        Bārakallāhu lakumā, wa bāraka 'alaykumā, wa jama'a baynakumā fi khayr.
+                    </div>
+                    <div class="dua-translation fade-text delay-4" style="font-size:0.9rem; margin-top:0;">
+                        "May Allah bless you both, shower His blessings upon you both,<br />
+                        and bring you together in goodness."
+                    </div>
+                </div>
+
+                <!-- Date, Time, Venue -->
+                <p class="fade-text delay-4" style="margin-top:6px;"><span class="label">Date</span><br /><span class="detail">23 July 2026</span></p>
+                <p class="fade-text delay-5"><span class="label">Time</span><br /><span class="detail">7:00 PM</span></p>
+                <p class="fade-text delay-5"><span class="label">Venue</span><br /><span class="detail">Senamalancha 545 Bir Uttam Ziaur Rahman Rd</span></p>
+
                 <a href="https://maps.app.goo.gl/85zZKgiNZLif3Pg5A" target="_blank" class="location-pill">📍 View Location</a>
             </div>
         </div>
@@ -762,11 +791,11 @@
         // Total slides: Intro + Holud + Akt + Wedding = 4 (Walima removed)
         const totalSlides = 4;
 
-        // Events for countdown – Walima removed
+        // Events for countdown – updated dates (Walima removed)
         const weddingEvents = [
-            { name: "Holud", month: 8, day: 4 }, // 4 Sep 2026
-            { name: "Akt", month: 8, day: 5 }, // 5 Sep 2026
-            { name: "Wedding", month: 8, day: 10 } // 10 Sep 2026
+            { name: "Holud", month: 6, day: 20 }, // 20 July 2026 (month 6 = Jul)
+            { name: "Akt", month: 8, day: 5 }, // 5 September 2026
+            { name: "Wedding", month: 6, day: 23 } // 23 July 2026
         ];
 
         const celebrationDuration = 3 * 60 * 60 * 1000;
