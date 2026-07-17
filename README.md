@@ -1,2 +1,2 @@
 # Invitation
-Tazrian And Tashfiha's Wedding
+A digital card for invitation of wedding
