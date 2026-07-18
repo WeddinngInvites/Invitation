@@ -713,13 +713,55 @@
             </div>
 
             <!-- ============================================================
-            CARD 1 – GAYE HOLUD (20 July, 8:00 pm, Uttara Club)
+            CARD 1 – GAYE HOLUD (21 July, 6:30 AM, Uttara Club)
             ============================================================ -->
             <div class="card card-henna" id="slide-1">
                 <h2 class="fade-text delay-1">Gaye Holud</h2>
-                <p class="fade-text delay-2"><span class="label">Venue</span><br /><span class="detail">Uttara Club</span></p>
-                <p class="fade-text delay-3"><span class="label">Date</span><br /><span class="detail">20 July 2026</span></p>
-                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">8:00 PM</span></p>
+
+                <!-- ===== CEREMONY DESCRIPTION ===== -->
+                <!-- Adjust font-size below to change text size -->
+                <p class="fade-text delay-2" style="font-size:0.98rem; line-height:1.6; max-width:88%; margin:4px auto;">
+                    With turmeric paste, songs, and laughter, we begin the countdown<br />
+                    to happily ever after. Join us for the Gaye Holud ceremony!
+                </p>
+
+                <!-- ===== VENUE ===== -->
+                <!-- Adjust margin-top below to push venue down/up -->
+                <p class="fade-text delay-3" style="margin-top:10px;"><span class="label">Venue</span><br /><span class="detail">Uttara Club</span></p>
+
+                <!-- ===== DATE ===== -->
+                <!-- Change the date text below as needed -->
+                <p class="fade-text delay-4"><span class="label">Date</span><br /><span class="detail">21 July 2026</span></p>
+
+                <!-- ===== TIME ===== -->
+                <!-- Change the time text below as needed -->
+                <p class="fade-text delay-4"><span class="label">Time</span><br /><span class="detail">6:30 AM</span></p>
+
+                <!-- ===== DRESS CODE / COLOR CODE ===== -->
+                <!-- Adjust font-size, gap, circle-size below to tweak appearance -->
+                <div class="fade-text delay-5" style="margin-top:12px; text-align:center;">
+                    <span class="label" style="display:block; margin-bottom:6px; font-size:0.95rem;">Dress Code</span>
+
+                    <!-- Girls row -->
+                    <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:4px; font-size:0.95rem;">
+                        <span style="color:#4e342e;">Girls:</span>
+                        <!-- Green circle – adjust width/height to change circle size -->
+                        <span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:#2e7d32; border:1px solid #999;"></span>
+                        <span style="color:#4e342e;">Green</span>
+                        <!-- Magenta circle – adjust width/height to change circle size -->
+                        <span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:#c2185b; border:1px solid #999;"></span>
+                        <span style="color:#4e342e;">Magenta</span>
+                    </div>
+
+                    <!-- Boys row -->
+                    <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:4px; font-size:0.95rem;">
+                        <span style="color:#4e342e;">Boys:</span>
+                        <!-- Green circle – adjust width/height to change circle size -->
+                        <span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:#2e7d32; border:1px solid #999;"></span>
+                        <span style="color:#4e342e;">Green</span>
+                    </div>
+                </div>
+
                 <!-- Updated Holud Map Link -->
                 <a href="https://maps.app.goo.gl/3trYyH14g88fVAiN6" target="_blank" class="location-pill">📍 View Location</a>
             </div>
@@ -769,9 +811,12 @@
         const totalSlides = 3;
 
         // Events for countdown – only Holud and Wedding remain
+        // ============================================================
+        // EVENT CONFIG – adjust day, hour, minute for each event
+        // ============================================================
         const weddingEvents = [
-            { name: "Holud", month: 6, day: 20 }, // 20 July 2026
-            { name: "Wedding", month: 6, day: 23 } // 23 July 2026
+            { name: "Holud", month: 6, day: 21, hour: 6, minute: 30 },  // 21 July 2026, 6:30 AM
+            { name: "Wedding", month: 6, day: 23, hour: 19, minute: 0 }  // 23 July 2026, 7:00 PM
         ];
 
         const celebrationDuration = 3 * 60 * 60 * 1000;
@@ -817,8 +862,9 @@
             const now = new Date();
             const currentYear = now.getFullYear();
 
+            // Build event dates using each event's hour & minute
             const events = weddingEvents.map(e => {
-                const start = new Date(currentYear, e.month, e.day, 20, 0, 0);
+                const start = new Date(currentYear, e.month, e.day, e.hour || 20, e.minute || 0, 0);
                 return {
                     name: e.name,
                     startTime: start,
