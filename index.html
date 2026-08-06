@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Wedding Invitation</title>
+
+    <!-- Meta Tags -->
+    <meta property="og:title" content="Wedding Invitation" />
+    <meta property="og:description" content="We cordially invite you to celebrate the wedding journey of our family. Join us for Holud, Akt, Wedding & Walima ceremonies!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://weddinnginvites.github.io/Invitation/" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Monte+Carlo&family=Amiri:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css?v=1.0.15">
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+    <div class="loader-ring"></div>
+    <div class="loader-text">Loading...</div>
+    <div class="loader-progress"><div class="loader-progress-bar" id="progress-bar"></div></div>
+    <div class="loader-percent" id="progress-percent">0%</div>
+</div>
+
+<!-- Main App -->
+<div id="app">
+    <!-- Background Music -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="Wedding/Jashn-E-Bahaaraa-Flute.mp3?v=1.0.15" type="audio/mpeg">
+    </audio>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelope" onclick="openEnvelope()">
+        <div class="tap-hint">Tap to Open</div>
+        <div class="envelope-half left-half"></div>
+        <div class="envelope-half right-half"></div>
+        <div class="envelope-base"></div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div id="timer-container">
+        <div class="timer-label" id="timer-target-name">Countdown</div>
+        <div id="timer-display">Calculating...</div>
+    </div>
+
+    <!-- Slider -->
+    <div class="slider" id="slider">
+        <div class="swipe-hint">Swipe to see more →</div>
+
+        <!-- CARD 0 – INTRODUCTION -->
+        <div class="card card-intro" id="slide-0">
+            <div class="quran-wrapper" id="quranWrapper">
+                <div class="quran-arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
+                <div class="quran-translation">"And of His signs is that He created for you from yourselves mates that you may find tranquility in them, and He placed between you affection and mercy."</div>
+                <div class="quran-surah">— Surah Ar-Rum (30:21)</div>
+            </div>
+            <div class="invitation-content" id="invitationContent">
+                <h1 class="intro-title fade-text delay-1">Invitation</h1>
+                <p class="intro-lead fade-text delay-2">We Cordially Invite You To Celebrate</br>The Wedding Events Of<br />Our Son</p>
+                <h2 class="intro-name fade-text delay-3">Mohammed Tazrian</h2>
+                <div class="intro-with fade-text delay-3">with</div>
+                <h2 class="intro-name fade-text delay-3">Tashfiha Faruk.</h2>
+                <p class="intro-parents fade-text delay-4">Daughter of Mohammed Faruk &amp; Rasheda Begum.</p>
+                <div class="intro-regards fade-text delay-5">Regards<br /><strong>Mohammed Musa<br />&amp; Nasrin Sultana.</strong></div>
+            </div>
+        </div>
+
+        <!-- CARD 1 – GAYE HOLUD -->
+        <div class="card card-henna" id="slide-1">
+            <div class="henna-content">
+                <div class="henna-join fade-text delay-1">Join us for a colorful</div>
+                <div class="henna-title fade-text delay-2">Holud</div>
+
+                <div class="henna-details fade-text delay-3">
+                    <div><strong>Venue:</strong> Bagan Bari (Isahoque Haji)</div>
+                    <div class="henna-venue-address">Haji Neyamot Ali Road, Hatazari</div>
+                    <div><strong>Date:</strong> 4<sup>th</sup> September, 2026</div>
+                    <div><strong>Time:</strong> 7pm</div>
+                </div>
+
+                <div class="henna-dress-code fade-text delay-4">
+                    <div class="girls-code">
+                        <div class="code-label underline">Dress code: Girls </div>
+                        <em>Lehenga/ saree</em>
+
+                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;Golden Yellow/ Rasberry/ &nbsp;&nbsp;&nbsp;&nbsp;Rose pink</div>
+                        <div class="color-palate">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="circle" style="background: #FFD700;"></span>
+                            <span class="circle" style="background: #D21F5A;"></span>
+                            <span class="circle" style="background: #E77394;"></span>
+                        </div>
+                    </div>
+
+                    <div class="boys-code">
+                        <div class="code-label underline"><br>Dress Code: Boys</div>
+                        <div class><em>Panjabi</em></div>
+                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;White &nbsp;&nbsp;&nbsp;&nbsp;<span class="circle" style="background: #FFFFFF;"></span></div>
+                    </div>
+                </div>
+
+                <div class="henna-btn-wrap">
+                    <a href="https://maps.app.goo.gl/J93TdScdxwhxtAHRA" target="_blank" class="henna-location-btn fade-text delay-5">
+                        <span class="pin-icon">📍</span> <span class="btn-text">Bagan bari Location</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2 – AKHD CEREMONY -->
+        <div class="card card-akt" id="slide-2">
+            <div class="akt-content">
+                <h2 class="akt-title-main fade-text delay-1">Akhd Ceremony</h2>
+                <p class="akt-message fade-text delay-2">With the grace of Allah, we begin our forever. We'd love for you to share this special moment with us.</p>
+
+                <div class="akt-details-group fade-text delay-3">
+                    <div class="akt-info-row">
+                        <span class="akt-label"></br>Venue:</span>
+                        <span class="akt-value"></br>&nbsp;Railway Masjid, CRB</span>
+                    </div>
+                    <div class="akt-info-row">
+                        <span class="akt-label">Date:</span>
+                        <span class="akt-value">&nbsp;5<sup>th</sup> September, 2026</span>
+                    </div>
+                    <div class="akt-info-row">
+                        <span class="akt-label">Time:</span>
+                        <span class="akt-value">&nbsp;Baad Asr Namaz</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 3 – THE WEDDING -->
+        <div class="card card-wedding" id="slide-3">
+            <div class="wedding-content">
+
+                <div class="wedding-invite-text fade-text delay-1"></br>We Joyfully invite You To the </div>
+                <div class="wedding-title-main fade-text delay-2">Wedding Ceremony</div>
+
+                <div class="wedding-date-row fade-text delay-3">
+                    On Friday <span class="script-text">10<sup>th</sup> September, 2026</span>
+                </div>
+
+                <div class="wedding-venue-row fade-text delay-4">
+                    <span class="script-text">King Of Chittagong,</span> </br>Panchlaish, Chattogram
+                </div>
+
+                <div class="wedding-time-row fade-text delay-5">
+                    <span class="bar">|</span> Time : 8:00 P.M. <span class="bar">|</span>
+                </div>
+                <div class="wedding-honor-text fade-text delay-6">
+                    Your presence will make our day truly complete.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CARD 4 – WALIMA -->
+        <div class="card card-walima" id="slide-4">
+            <div class="walima-content">
+                <div class="walima-arabic fade-text delay-1">بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+                <h2 class="walima-title-main fade-text delay-2">Walima</h2>
+                <p class="walima-message fade-text delay-3">With Joyful Hearts, We request The Honor Of<br>Your Presence And Blessing On The Auspicious<br>Occasion Of The Walima Ceremony</p>
+
+                <div class="walima-venue-label fade-text delay-4"></br>Venue</div>
+                <div class="walima-venue-name fade-text delay-4">Kings Of Chittagong,</div>
+                <div class="walima-venue-address fade-text delay-4">Panchlaish, Chattogram</div>
+
+                <div class="walima-details-group fade-text delay-5">
+                    <div class="walima-info-row">
+                        <div class="walima-venue-label fade-text delay-4">Date</div>
+                        <span class="walima-gold-value">12<sup>th</sup> September</br></span>
+                        <div class="walima-venue-label fade-text delay-4">2026</div>
+                    </div>
+                    <div class="walima-info-row">
+                        <div class="walima-venue-label fade-text delay-4"></br>Time</div>
+                        <span class="walima-gold-label">8:00 P.M</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blessings -->
+    <div class="blessings-text">Blessings Only</div>
+</div>
+
+<script>
+    /**
+     * CONFIGURATION
+     */
+    const version = "1.0.15"; // Increment this to force cache clear
+
+    // ══════════════════════════════════════════════════════════
+    // SECRET LINK SETUP
+    // ══════════════════════════════════════════════════════════
+    // The plain link (https://weddinnginvites.github.io/Invitation/) hides the Holud card.
+    // The secret link (https://weddinnginvites.github.io/Invitation/?yellow+yes)
+    // shows the Holud card for the few invited guests. The "+" is how a
+    // space appears in a link, so it reads as "yellow yes" — looks like an
+    // innocent answer rather than a special link.
+    const SECRET_WORD = "yellow yes"; // appears in the link as: ?yellow+yes
+    // Normalize the query so the secret still works even if a chat app
+    // re-encodes the link when sharing ("%20" or "%2B" instead of "+").
+    let normalizedSearch = window.location.search;
+    try {
+        normalizedSearch = decodeURIComponent(normalizedSearch);
+    } catch (e) { /* malformed encoding — keep the raw string */ }
+    normalizedSearch = normalizedSearch.replace(/\+/g, " ");
+    const showHolud = normalizedSearch === "?" + SECRET_WORD;
+
+    const config = {
+        totalSlides: showHolud ? 5 : 4, // Intro + Holud/Akt/Wedding/Walima (or without Holud)
+        weddingEvents: showHolud ? [
+            { name: "Holud", month: 8, day: 4 },
+            { name: "Akt", month: 8, day: 5 },
+            { name: "Wedding", month: 8, day: 10 },
+            { name: "Walima", month: 8, day: 12 }
+        ] : [
+            { name: "Akt", month: 8, day: 5 },
+            { name: "Wedding", month: 8, day: 10 },
+            { name: "Walima", month: 8, day: 12 }
+        ],
+        celebrationDuration: 3 * 60 * 60 * 1000,
+        imageUrls: [
+            'Wedding/envelopLeft.png',
+            'Wedding/EnvelopRight.png',
+            'Wedding/(BG)IntroductionCard.png',
+            ...(showHolud ? ['Wedding/(BG)henna.png'] : []),
+            'Wedding/(BG)TheAkt.png',
+            'Wedding/(BG)TheWedding.png',
+            'Wedding/(BG)Walima.png'
+        ].map(url => `${url}?v=${version}`),
+        quranTiming: {
+            delayBeforeShow: 400,
+            showDuration: 5000,
+            delayBeforeHide: 400
+        },
+        swipeThreshold: 40
+    };
+
+    // ---- DOM references ----
+    const app = document.getElementById('app');
+    const slider = document.getElementById('slider');
+    const bgMusic = document.getElementById('bgMusic');
+    const timerContainer = document.getElementById('timer-container');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const quranWrapper = document.getElementById('quranWrapper');
+    const invitationContent = document.getElementById('invitationContent');
+    const envelope = document.getElementById('envelope');
+
+    // ---- Remove the Holud card if the secret link is not used ----
+    if (!showHolud) {
+        const holudCard = document.getElementById('slide-1');
+        if (holudCard) holudCard.remove();
+        // Renumber the remaining slides (slide-2 → slide-1, etc.)
+        document.querySelectorAll('.card[id^="slide-"]').forEach((el, i) => {
+            el.id = `slide-${i}`;
+        });
+    }
+
+    // ---- State variables ----
+    let currentSlide = 0;
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let musicPlaying = false;
+    let quranAlreadyShown = false;
+    let envelopeOpened = false;
+    let quranTimer; // Timer for Quran auto-hide
+    let peekInterval; // Timer for swipe hint animation
+
+    bgMusic.volume = 0.18;
+
+    /**
+     * Hides the Quran section and shows the invitation content
+     */
+    function hideQuranAndShowInvite() {
+        if (quranAlreadyShown) return;
+
+        // Stop any pending auto-hide timer
+        clearTimeout(quranTimer);
+
+        // Remove skip listeners
+        document.removeEventListener('mousedown', handleQuranSkip);
+        document.removeEventListener('touchstart', handleQuranSkip);
+
+        // Start hide transition
+        quranWrapper.classList.remove('visible');
+
+        // Wait for transition, then swap visibility
+        setTimeout(() => {
+            quranWrapper.classList.add('hidden-forever');
+            quranAlreadyShown = true;
+            invitationContent.classList.add('visible');
+
+            // Trigger peek animation to hint swiping
+            triggerSwipePeek();
+        }, config.quranTiming.delayBeforeHide);
+    }
+
+    /**
+     * Visual peek animation to guide users to swipe.
+     * Repeats every 7 seconds until the user swiped away from slide 0.
+     */
+    function triggerSwipePeek() {
+        const runPeek = () => {
+            if (currentSlide !== 0) {
+                clearInterval(peekInterval);
+                peekInterval = null;
+                return;
+            }
+            slider.classList.remove('peek-animation');
+            void slider.offsetWidth; // Force reflow to allow re-triggering the same animation
+            slider.classList.add('peek-animation');
+        };
+
+        runPeek(); // First run
+        peekInterval = setInterval(runPeek, 7000);
+    }
+
+    /**
+     * Skip handler for user interaction during Quran display
+     */
+    function handleQuranSkip() {
+        hideQuranAndShowInvite();
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const events = config.weddingEvents.map(e => {
+            const start = new Date(currentYear, e.month, e.day, 20, 0, 0);
+            return {
+                name: e.name,
+                startTime: start,
+                endTime: new Date(start.getTime() + config.celebrationDuration)
+            };
+        });
+
+        if (currentSlide === 0) {
+            timerContainer.style.opacity = '0';
+            return;
+        }
+
+        const unfinished = events.filter(e => now < e.endTime);
+        const nameLabel = document.getElementById('timer-target-name');
+        const timeLabel = document.getElementById('timer-display');
+
+        if (unfinished.length === 0) {
+            timerContainer.style.opacity = '1';
+            nameLabel.innerText = "";
+            timeLabel.innerText = "Thanks for celebrating with us";
+            return;
+        }
+
+        timerContainer.style.opacity = '1';
+        const eventIndex = currentSlide - 1;
+        let targetEvent = events[eventIndex] && now < events[eventIndex].endTime ?
+            events[eventIndex] : unfinished[0];
+
+        nameLabel.innerText = "Countdown to " + targetEvent.name;
+        const diff = targetEvent.startTime - now;
+        if (diff > 0) {
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            if (d > 0) timeLabel.innerText = d + (d === 1 ? " Day " : " Days ") + "to go";
+            else if (h >= 1) timeLabel.innerText = h + " Hour to go";
+            else timeLabel.innerText = m + " Min to go";
+        } else {
+            timeLabel.innerText = "Happening Now!";
+        }
+    }
+
+    function openEnvelope() {
+        if (envelopeOpened) return;
+        envelopeOpened = true;
+        envelope.classList.add('open');
+        slider.style.display = 'block';
+        updateCountdown();
+        setTimeout(() => { goToSlide(0); }, 800);
+
+        if (!musicPlaying) {
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+            }).catch(() => {
+                // Auto-play blocked by browser; music stays off
+            });
+        }
+    }
+
+    function goToSlide(index) {
+        // Stop the peek hint once the user moves away from the first slide
+        if (index !== 0 && peekInterval) {
+            clearInterval(peekInterval);
+            peekInterval = null;
+        }
+
+        const prevSlide = document.getElementById(`slide-${currentSlide}`);
+        if (prevSlide) prevSlide.classList.remove('active');
+        currentSlide = index;
+        const newSlide = document.getElementById(`slide-${currentSlide}`);
+        if (newSlide) newSlide.classList.add('active');
+
+        if (currentSlide === 0) {
+            slider.classList.add('show-swipe');
+            if (!quranAlreadyShown) {
+                // Initial delay before showing Quran
+                setTimeout(() => {
+                    quranWrapper.classList.add('visible');
+
+                    // Set auto-hide timer (5 seconds)
+                    quranTimer = setTimeout(hideQuranAndShowInvite, config.quranTiming.showDuration);
+
+                    // Add one-time listeners for click/touch skip
+                    document.addEventListener('mousedown', handleQuranSkip, { once: true });
+                    document.addEventListener('touchstart', handleQuranSkip, { once: true });
+                }, config.quranTiming.delayBeforeShow);
+            } else {
+                invitationContent.classList.add('visible');
+            }
+        } else {
+            slider.classList.remove('show-swipe');
+        }
+        updateCountdown();
+    }
+
+    function handleDragStart(e) {
+        if (!envelopeOpened) return;
+        if (!e.target.closest('.slider')) return;
+        isDragging = true;
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+    }
+
+    function handleDragEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+        const endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+        if (Math.abs(diffX) > config.swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 0.6) {
+            if (diffX > 0 && currentSlide < config.totalSlides - 1) goToSlide(currentSlide + 1);
+            else if (diffX < 0 && currentSlide > 0) goToSlide(currentSlide - 1);
+        }
+    }
+
+    slider.addEventListener('touchstart', handleDragStart, { passive: true });
+    slider.addEventListener('touchend', handleDragEnd, { passive: true });
+    slider.addEventListener('touchmove', (e) => isDragging && e.preventDefault(), { passive: false });
+    slider.addEventListener('mousedown', handleDragStart);
+    document.addEventListener('mouseup', handleDragEnd);
+
+    document.addEventListener('keydown', (e) => {
+        if (!envelopeOpened) return;
+        if (e.key === 'ArrowRight' && currentSlide < config.totalSlides - 1) goToSlide(currentSlide + 1);
+        else if (e.key === 'ArrowLeft' && currentSlide > 0) goToSlide(currentSlide - 1);
+    });
+
+    /**
+     * Page Visibility Listener: Stop music when user leaves the tab
+     */
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            bgMusic.pause();
+        } else {
+            // Only resume if it was playing before and envelope is open
+            if (musicPlaying && envelopeOpened) {
+                bgMusic.play().catch(err => console.log("Auto-play blocked on resume"));
+            }
+        }
+    });
+
+    function preloadImages(urls) {
+        return new Promise((resolve) => {
+            let loaded = 0;
+            const total = urls.length;
+            const progressBar = document.getElementById('progress-bar');
+            const percentLabel = document.getElementById('progress-percent');
+            urls.forEach((url) => {
+                const img = new Image();
+                img.onload = img.onerror = () => {
+                    loaded++;
+                    const pct = Math.round((loaded / total) * 100);
+                    progressBar.style.width = pct + '%';
+                    percentLabel.textContent = pct + '%';
+                    if (loaded === total) resolve();
+                };
+                img.src = url;
+            });
+            setTimeout(resolve, 8000);
+        });
+    }
+
+    async function init() {
+        await preloadImages(config.imageUrls);
+        loadingOverlay.classList.add('hidden');
+        app.classList.add('ready');
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    }
+    init();
+</script>
+</body>
+</html>

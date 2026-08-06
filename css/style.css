@@ -1,0 +1,1016 @@
+/* ============================================================
+   GLOBAL THEME VARIABLES
+   ============================================================ */
+:root {
+    --card-bg: #FFFFF0;      /* Main background color for cards */
+    --text-main: #4e342e;    /* Primary dark brown text */
+    --text-sub: #5d4037;     /* Secondary lighter brown text */
+    --fade-dur: 0.5s;        /* Text fade-in animation duration */
+    --env-speed: 1.2s;       /* Envelope opening animation speed */
+    --hint-color: #b22222;   /* Color for "Tap to Open" hint */
+    --gold: #c9a84c;         /* Gold accent color */
+    --quran-gold: #b8860b;   /* Gold color specifically for Arabic text */
+}
+
+/* ============================================================
+   RESET & BASE STYLES
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling the whole page */
+    font-family: 'Georgia', serif;
+    background: var(--card-bg);
+}
+
+/* ============================================================
+   LOADING OVERLAY (PRELOADER)
+   ============================================================ */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-ring {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 5px solid #f0e6d3;
+    border-top-color: var(--gold);
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 25px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loader-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: var(--text-main);
+    letter-spacing: 2px;
+}
+
+.loader-progress {
+    margin-top: 15px;
+    width: 180px;
+    height: 4px;
+    background: #e8ddd0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.loader-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gold);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.loader-percent {
+    font-family: 'Georgia', serif;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+/* ============================================================
+   MAIN APP & ENVELOPE (INITIAL VIEW)
+   ============================================================ */
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-bg);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#app.ready {
+    opacity: 1;
+}
+
+.envelope-container {
+    position: absolute;
+    width: 90vw;
+    max-width: 450px;
+    height: 60vh;
+    z-index: 100;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease 1.5s;
+    margin-left: 20px;
+}
+
+.tap-hint {
+    position: absolute;
+    top: -60px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--hint-color);
+    animation: bounce 2s infinite;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-15px); }
+    60% { transform: translateY(-8px); }
+}
+
+.envelope-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.envelope-half {
+    position: absolute;
+    top: 0;
+    width: 61%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform var(--env-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+.left-half {
+    left: 0;
+    background-image: url('../Wedding/envelopLeft.png');
+    background-position: right;
+}
+
+.right-half {
+    right: 0;
+    background-image: url('../Wedding/EnvelopRight.png');
+    background-position: left;
+}
+
+.envelope-container.open .left-half { transform: translateX(-150%); }
+.envelope-container.open .right-half { transform: translateX(150%); }
+.envelope-container.open { pointer-events: none; opacity: 0; }
+
+/* ============================================================
+   TIMER & SLIDER (EVENT VIEW)
+   ============================================================ */
+#timer-container {
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    z-index: 50;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.timer-label {
+    font-size: 0.9rem;
+    color: #8d6e63;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+#timer-display {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+
+.slider {
+    position: relative;
+    width: 91vw;
+    max-width: 428px;
+    height: 80vh;
+    display: none;
+    margin-top: 50px;
+    touch-action: none;
+    user-select: none;
+}
+
+.swipe-hint {
+    position: absolute;
+    top: -45px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.56rem;
+    color: var(--text-sub);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    z-index: 20;
+}
+
+.slider.show-swipe .swipe-hint {
+    opacity: 1;
+    animation: pulseHint 2s infinite;
+}
+
+/* Peek animation to hint swiping for better UX */
+@keyframes cardPeek {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(-60px); }
+    60% { transform: translateX(0); }
+    80% { transform: translateX(-20px); }
+    100% { transform: translateX(0); }
+}
+
+.peek-animation {
+    animation: cardPeek 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.6; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
+}
+
+/* ============================================================
+   CARD BASE STYLES
+   ============================================================ */
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--card-bg);
+    background-size: 100% 100%;
+    background-position: center;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+    transition: all 0.8s ease-out;
+    pointer-events: none;
+    overflow-y: auto;
+}
+
+.card.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.fade-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--fade-dur) ease, transform var(--fade-dur) ease;
+}
+
+/* Staggered animation triggers */
+.card.active:not(.card-intro) .fade-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* For Intro Card: Only show text after Quran sequence is complete */
+.invitation-content.visible .fade-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay classes for staggered animations */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.6s; }
+.delay-3 { transition-delay: 1s; }
+.delay-4 { transition-delay: 1.1s; }
+.delay-5 { transition-delay: 1.2s; }
+.delay-6 { transition-delay: 1.3s; }
+
+/* ---- GLOBAL TYPOGRAPHY INSIDE CARDS ---- */
+.card h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+
+.card p {
+    font-size: 1.05rem;
+    color: var(--text-sub);
+    line-height: 1.7;
+    max-width: 100%;
+    margin: 4px auto;
+}
+
+.card .label {
+    font-weight: 600;
+    color: #3e2c28;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.card .detail {
+    font-size: 1rem;
+    color: #4e342e;
+}
+
+/* ============================================================
+   LOCATION BUTTONS
+   ============================================================ */
+.location-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    border: none;
+    cursor: pointer;
+}
+
+.active .location-pill {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease 1s, transform 1s ease 1s, background 0.3s ease;
+}
+
+.location-pill:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   [CUSTOMISE] CARD 0: INTRODUCTION
+   ============================================================ */
+.card-intro {
+    background-image: url('../Wedding/(BG)IntroductionCard.png');
+    justify-content: flex-start;
+    padding-top: 90px !important; /* Minimal padding to start as high as possible */
+}
+
+.intro-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: #41563D;
+    margin-top: 0; /* Ensure no top margin */
+    margin-bottom: 5px; /* Tighter spacing */
+}
+
+.intro-lead {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: #41563D;
+    margin-bottom: 15px; /* Reduced margin */
+    padding: 0 5px;
+    font-weight: 500;
+}
+
+.intro-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #41563D;
+    margin: 4px 0; /* Reduced margin */
+    line-height: 1;
+    letter-spacing: 10px;
+}
+
+.intro-with {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.4rem;
+    color: #41563D;
+    margin: 2px 0; /* Reduced margin */
+}
+
+.intro-parents {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #41563D;
+    margin-top: 10px; /* Reduced margin */
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.intro-regards {
+    font-family: 'Montserrat', sans-serif;
+    text-align: right;
+    width: 100%;
+    padding-right: 30px;
+    margin-top: 0px;
+    font-size: 0.80rem;
+    color: #41563D;
+    line-height: 1.3;
+}
+
+.intro-regards strong {
+    display: block;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+/* ---- Quran section: Centered in middle with slide transitions ---- */
+.quran-wrapper {
+    position: absolute; /* Take out of flow to appear in middle */
+    top: 40%; /* Shifted up from 50% */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.8s ease, opacity 0.8s ease;
+    z-index: 100;
+}
+
+.quran-wrapper.visible {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.quran-wrapper.hidden-forever {
+    display: none !important;
+}
+
+/* Arabic: Left to Right transition */
+.quran-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--quran-gold);
+    direction: rtl;
+    margin-bottom: 10px;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateX(-50px); /* Start from left */
+    transition: all 1s ease 0.4s;
+}
+
+.visible .quran-arabic {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Translation: Right to Left transition */
+.quran-translation {
+    font-size: 0.95rem;
+    color: #5d4037;
+    font-style: italic;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(50px); /* Start from right */
+    transition: all 1s ease 0.4s;
+}
+
+.visible .quran-translation {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.quran-surah {
+    font-size: 0.65rem;
+    color: #8d6e63;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.8s ease 1s;
+}
+
+.visible .quran-surah {
+    opacity: 1;
+}
+
+/* ============================================================
+   [CUSTOMISE] CARD 1: GAYE HOLUD (HENNA)
+   ============================================================ */
+.card-henna {
+    background-image: url('../Wedding/(BG)henna.png');
+    padding: 10px !important;
+}
+
+.henna-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Changed from center to align left */
+    padding-top: 122px;
+    padding-left: 55px; /* Original position - unchanged */
+}
+
+.henna-join {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 5px;
+    font-weight: 500;
+    padding-left: 5px;
+}
+
+.henna-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #A58620; /* Dark gold */
+    margin-bottom: 8px;
+    line-height: 1;
+    padding-left: 20px; /* Original position - unchanged */
+}
+
+.henna-details {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .75rem;
+    font-weight: 570;
+    color: #000;
+    line-height: 1.4;
+    margin-bottom: 10px; /* Gap before dress code (was two <br> tags) */
+    text-align: left;
+    padding-right: 30px;
+    margin-left: -10px; /* Small shift right */
+}
+
+.henna-venue-address {
+    font-size: .68rem;
+    padding-left: 47px; /* Align under the venue name, after the 'Venue:' label */
+    font-style: italic;
+}
+
+.henna-dress-code {
+    width: 100%;
+    max-width: 280px;
+    text-align: left;
+    margin-top: 0; /* Reduced from 10px */
+    margin-bottom: 0 1px;
+    padding-right: 20px;
+    margin-left: -10px; /* Small shift right */
+}
+
+.girls-code, .boys-code {
+    margin-bottom: 0 .3px;
+}
+
+.code-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .8rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.girls-code > em,
+.boys-code em {
+    font-style: italic;
+    font-weight: 700;
+}
+
+.underline {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-bottom: 3px;
+}
+
+.color-palette {
+  display: flex;
+  gap: 3px;
+  margin-top: 2px;
+  border: 3px solid #ccc; /* Width, style, and color */
+}
+
+
+.color-names-para {
+    width: 68%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 470;
+    font-style: italic;
+    color: #000;
+    line-height: 1.3;
+    margin: 2px 0;
+}
+
+.circle {
+    display: inline-block; /* Ensures size applies when placed inline beside text (boys "Orange") */
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.2);
+    flex-shrink: 0;
+    vertical-align: middle; /* Aligns circle nicely beside inline text (boys "Orange") */
+}
+
+/* Full-width wrapper pinned to the card so the pill centers on the card,
+   not on the padded content box (which is shifted right by the left padding) */
+.henna-btn-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px; /* 15px above the bottom of the card */
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.henna-location-btn {
+    background: #fff;
+    padding: 7px 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content inside the button */
+    gap: 7px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 10;
+    transition: transform 0.3s ease;
+    width: fit-content; /* Ensure it wraps content */
+}
+
+.henna-location-btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.pin-icon {
+    font-size: 1rem;
+}
+
+/* ============================================================
+   [CUSTOMISE] CARD 2: AKHD CEREMONY
+   ============================================================ */
+.card-akt {
+    background-image: url('../Wedding/(BG)TheAkt.png');
+    padding: 0 !important;
+}
+
+.akt-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 140px; /* Adjusted from 180px to prevent overflow */
+    z-index: 5;
+}
+
+/* Ensure flow layout works with animations */
+.card-akt.active .fade-text {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.akt-title-main {
+    font-family: 'Great Vibes', cursive !important;
+    font-size: 2.8rem !important; /* Slightly larger for the Monte Carlo font */
+    color: #000;
+    margin: 0 0 10px 0 !important;
+    text-align: center;
+}
+
+.akt-message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem !important;
+    width: 72%;
+    color: #000;
+    line-height: 1.2 !important;
+    text-align: center;
+    padding: 0 5px;
+    margin-bottom: 40px;
+    font-weight: 150;
+    padding bottom: 15 px;
+}
+
+.akt-details-group {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.akt-info-row {
+    display: flex;
+    flex-direction: row; /* Label and value side-by-side as in image */
+    width: 100%;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 5px; /* Increased distance between the 3 rows */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.akt-value {
+    font-size: .85rem; /* Enlarged as requested */
+    font-weight: 578; /* Bolder as requested */
+    color: #000;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.akt-location-btn {
+    background: #e2a188;
+    padding: 5px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 10;
+    transition: transform 0.3s ease;
+    width: fit-content;
+
+    /* New positioning rules */
+    position: fixed;
+    bottom: 90px; /* Adjust this to change distance from the very bottom */
+    transform: translateX(-50%);
+}
+
+/* ============================================================
+   [CUSTOMISE] CARD 3: THE WEDDING
+   ============================================================ */
+.card-wedding {
+    background-image: url('../Wedding/(BG)TheWedding.png');
+    padding: 0 !important;
+}
+
+.wedding-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Push everything to the top */
+    padding: 135px 20px 0 20px; /* Top space via padding (was 5x </br>) */
+    z-index: 3;
+}
+
+/* Ensure flow layout works with animations */
+.card-wedding.active .fade-text {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.wedding-invite-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    color: #000;
+    margin-bottom: 3px;
+    font-weight: 1;
+}
+
+.wedding-title-main {
+    font-family: 'Great Vibes', cursive !important;
+    font-size: 2.3rem !important;
+    color: #000;
+    margin: 0 0 3px 0 !important;
+    text-align: center;
+    font-weight: 500
+}
+
+.wedding-date-row {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    color: #000;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.wedding-date-row .script-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+.wedding-venue-row {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    color: #000;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.wedding-venue-row .script-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    vertical-align: middle;
+}
+
+.wedding-time-row {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #000;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.wedding-time-row .bar {
+    color: #a67c00;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.wedding-honor-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    color: #000;
+    line-height: 1.2;
+    max-width: 100%;
+    text-align: center;
+    font-weight: 400;
+    padding: 0 5px;
+    margin-top: 10px;
+    margin-top: 4;
+    margin-bottom: 2px;
+}
+
+/* ============================================================
+   [CUSTOMISE] CARD 4: WALIMA
+   ============================================================ */
+.card-walima {
+    background-image: url('../Wedding/(BG)Walima.png');
+    padding: 0 !important;
+}
+
+.walima-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 177px; /* Adjusted from 120px to prevent overflow */
+    z-index: 5;
+}
+
+/* Ensure flow layout works with animations */
+.card-walima.active .fade-text {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.walima-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 0.72rem; /* Increased from 0.68rem for readability */
+    color: #3e2723;
+    text-align: center;
+    direction: rtl;
+    padding: 0 15px;
+    margin-bottom: 5px;
+}
+
+.walima-title-main {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.6rem !important; /* Slightly increased */
+    color: #3e2723;
+    margin: 0 0 5px 0 !important; /* Fixed typo and adjusted margin */
+    text-align: center;
+}
+
+.walima-message {
+    font-family: 'Montserrat', serif;
+    font-size: 0.6rem !important; /* Increased from 0.7rem */
+    color: #4e342e;
+    line-height: 1.3 !important;
+    text-align: center;
+    padding: 0 5px;
+    margin-bottom: 7px; /* Reduced from 25px to save space */
+}
+
+.walima-venue-label {
+    font-family: 'Montserrat', serif;
+    font-size: .75rem;
+    color: #a67c00;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.walima-venue-name {
+    font-family: 'Montserrat', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #a67c00;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.walima-venue-address {
+    font-family: 'Montserrat', serif;
+    font-size: 0.6rem;
+    color: #a67c00;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0 40px;
+    margin-bottom: 7px;
+}
+
+.walima-details-group {
+    width: 100%;
+    text-align: center;
+
+}
+
+.walima-info-row {
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.walima-gold-label {
+    font-family: 'Montserrat', serif;
+    font-size: 1rem; /* Increased from 0.7rem */
+    color: #a67c00;
+    text-align: center;
+}
+
+.walima-gold-value {
+    font-family: 'Montserrat', serif;
+    font-size: 1rem; /* Increased from 0.7rem */
+    color: #a67c00;
+    text-align: center;
+}
+
+/* ============================================================
+   BLESSINGS TEXT & RESPONSIVE SCALING
+   ============================================================ */
+.blessings-text {
+    position: absolute;
+    /* 3px below the card, on every card:
+       slider = 80vh tall + 50px top margin, centered in a 100vh app
+       → card bottom = 10vh (centering) + 50px + 80vh = 90vh + 50px */
+    top: calc(90vh + 30px);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.1rem;
+    color: var(--text-sub);
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: 200;
+}
+
+/* Responsive scaling for mobile devices */
+@media (max-width: 480px) {
+    .tap-hint { font-size: 1.6rem; top: -45px; }
+    h1 { font-size: 2rem; }
+    .card h2 { font-size: 1.6rem; }
+    .card p { font-size: 0.9rem; max-width: 95%; }
+    .quran-arabic { font-size: 1.2rem; }
+    .card-intro { padding-top: 100px; } /* Slightly more padding on mobile */
+}
+
+@media (max-width: 380px) {
+    .quran-arabic { font-size: 1rem; }
+    .card h2 { font-size: 1.3rem; }
+}
