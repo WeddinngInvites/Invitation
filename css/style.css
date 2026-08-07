@@ -188,7 +188,7 @@ html, body {
    ============================================================ */
 #timer-container {
     position: absolute;
-    top: 25px;
+    top: 15px;
     width: 100%;
     text-align: center;
     opacity: 0;
@@ -198,16 +198,16 @@ html, body {
 }
 
 .timer-label {
-    font-size: 0.9rem;
+    font-size: 0.68rem;
     color: #8d6e63;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 #timer-display {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.5rem;
+    font-size: 1.05rem;
     color: var(--text-main);
 }
 
@@ -215,9 +215,9 @@ html, body {
     position: relative;
     width: 91vw;
     max-width: 428px;
-    height: 80vh;
+    height: 82vh;
     display: none;
-    margin-top: 50px;
+    margin-top: 15px;
     touch-action: none;
     user-select: none;
 }
@@ -283,6 +283,14 @@ html, body {
     transition: all 0.8s ease-out;
     pointer-events: none;
     overflow-y: auto;
+    scrollbar-width: none;    /* Firefox: hide the scrollbar */
+    -ms-overflow-style: none; /* Legacy Edge/IE: hide the scrollbar */
+}
+
+/* Chrome/Safari/new Edge: hide the scrollbar on cards.
+   Cards remain scrollable on small screens (overflow-y: auto above). */
+.card::-webkit-scrollbar {
+    display: none;
 }
 
 .card.active {
@@ -650,7 +658,9 @@ html, body {
     right: 0;
     bottom: 8px; /* 15px above the bottom of the card */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px; /* 3px gap between pill button and blessings text */
     z-index: 10;
 }
 
@@ -752,7 +762,7 @@ html, body {
     font-weight: 578; /* Bolder as requested */
     color: #000;
     text-align: left;
-    line-height: 1.2;
+    line-height: 1.4;
 }
 
 .akt-location-btn {
@@ -984,20 +994,29 @@ html, body {
    BLESSINGS TEXT & RESPONSIVE SCALING
    ============================================================ */
 .blessings-text {
-    position: absolute;
-    /* 3px below the card, on every card:
-       slider = 80vh tall + 50px top margin, centered in a 100vh app
-       → card bottom = 10vh (centering) + 50px + 80vh = 90vh + 50px */
-    top: calc(90vh + 30px);
-    left: 0;
-    width: 100%;
-    text-align: center;
     font-family: 'Great Vibes', cursive;
     font-size: 1.1rem;
     color: var(--text-sub);
     letter-spacing: 1px;
+    text-align: center;
     pointer-events: none;
-    z-index: 200;
+    white-space: nowrap;
+}
+
+/* Henna: blessings text sits inside the wrap, 3px below the pill button */
+.henna-btn-wrap .blessings-text {
+    position: static;
+}
+
+/* All cards (incl. invitation): 5px above the bottom of the card */
+.card-intro .blessings-text,
+.card-akt .blessings-text,
+.card-wedding .blessings-text,
+.card-walima .blessings-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
 }
 
 /* Responsive scaling for mobile devices */

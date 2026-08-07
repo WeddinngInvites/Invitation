@@ -33,7 +33,7 @@
 ## 🚀 Deployment
 
 This site is hosted on **GitHub Pages** at:
-👉 [**weddinnginvites.github.io/Invitation**](https://weddinnginvites.github.io/Invitation/)
+👉 [**sadafmdmahbub.github.io**](https://sadafmdmahbub.github.io/)
 
 ---
 
