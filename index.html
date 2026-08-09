@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Monte+Carlo&family=Amiri:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=1.0.19">
+    <link rel="stylesheet" href="css/style.css?v=1.0.48">
 </head>
 <body>
 
@@ -29,11 +29,6 @@
 
 <!-- Main App -->
 <div id="app">
-    <!-- Background Music -->
-    <audio id="bgMusic" preload="auto" loop>
-        <source src="Wedding/Jashn-E-Bahaaraa-Flute.mp3?v=1.0.15" type="audio/mpeg">
-    </audio>
-
     <!-- Envelope -->
     <div class="envelope-container" id="envelope" onclick="openEnvelope()">
         <div class="tap-hint">Tap to Open</div>
@@ -60,14 +55,27 @@
                 <div class="quran-surah">— Surah Ar-Rum (30:21)</div>
             </div>
             <div class="invitation-content" id="invitationContent">
-                <h1 class="intro-title fade-text delay-1">Invitation</h1>
-                <p class="intro-lead fade-text delay-2">We Cordially Invite You To Celebrate</br>The Wedding Events Of<br />Our Son</p>
-                <h2 class="intro-name fade-text delay-3">Mohammed Tazrian</h2>
-                <div class="intro-with fade-text delay-3">with</div>
-                <h2 class="intro-name fade-text delay-3">Tashfiha Faruk.</h2>
-                <p class="intro-parents fade-text delay-4">Daughter of Mohammed Faruk &amp; Rasheda Begum.</p>
-                <div class="intro-regards fade-text delay-5">Regards<br /><strong>Mohammed Musa<br />&amp; Nasrin Sultana.</strong></div>
-                <div class="blessings-text fade-text delay-6">Blessings Only</div>
+                <img src="Wedding/InvitaionArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
+
+                <div class="intro-title-script fade-text delay-2">Invitation</div>
+
+                <div class="intro-lead fade-text delay-3">We Cordially Invite You To<br>The Wedding Ceremony Of Our Son</div>
+
+                <div class="intro-name-groom fade-text delay-4">Mohammed Tazrian</div>
+
+                <div class="intro-with-script fade-text delay-4">With</div>
+
+                <div class="intro-name-bride fade-text delay-4">Tashfiha Faruk</div>
+
+                <div class="intro-bride-parentage fade-text delay-5">Daughter Of <strong>Mohammed Faruk & Rasheda Begum.</strong></div>
+
+                <div class="intro-message fade-text delay-5">MAY WE HUMBLY REQUEST YOUR GRACIOUS BLESSINGS FOR THE NEWLYWEDS AS THEY BEGIN THEIR LIFE TOGETHER.</div>
+
+                <div class="intro-regards-container fade-text delay-6">
+                    <div class="regards-label">Regards</div>
+                    <div class="regards-names">Mohammed Musa<br>& Nasrin Sultana</div>
+                </div>
+
             </div>
         </div>
 
@@ -79,9 +87,9 @@
 
                 <div class="henna-details fade-text delay-3">
                     <div><strong>Venue:</strong> Bagan Bari (Isahoque Haji)</div>
-                    <div class="henna-venue-address">Haji Neyamot Ali Road, Hatazari</div>
-                    <div><strong>Date:</strong> 4<sup>th</sup> September, 2026</div>
-                    <div><strong>Time:</strong> 7pm</div>
+                    <div class="henna-venue-address">Haji Neyamot Ali Road, Hatazari.</div>
+                    <div><strong>Date:</strong> 4<sup>th</sup> September, 2026.</div>
+                    <div><strong>Time:</strong> 7 P.M.</div>
                 </div>
 
                 <div class="henna-dress-code fade-text delay-4">
@@ -100,7 +108,7 @@
                     <div class="boys-code">
                         <div class="code-label underline"><br>Dress Code: Boys</div>
                         <div class><em>Panjabi</em></div>
-                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;White &nbsp;&nbsp;&nbsp;&nbsp;<span class="circle" style="background: #FFFFFF;"></span></div>
+                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;Off White &nbsp;&nbsp;&nbsp;&nbsp;<span class="circle" style="background: #FAF9F6;"></span></div>
                     </div>
                 </div>
 
@@ -108,7 +116,6 @@
                     <a href="https://maps.app.goo.gl/J93TdScdxwhxtAHRA" target="_blank" class="henna-location-btn fade-text delay-5">
                         <span class="pin-icon">📍</span> <span class="btn-text">Bagan bari Location</span>
                     </a>
-                    <div class="blessings-text fade-text delay-6">Blessings Only</div>
                 </div>
             </div>
         </div>
@@ -116,24 +123,24 @@
         <!-- CARD 2 – AKHD CEREMONY -->
         <div class="card card-akt" id="slide-2">
             <div class="akt-content">
-                <h2 class="akt-title-main fade-text delay-1">Akhd Ceremony</h2>
-                <p class="akt-message fade-text delay-2">With the grace of Allah, we begin our forever. We'd love for you to share this special moment with us.</p>
+                <img src="Wedding/AktArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
+                <div class="akt-title-main fade-text delay-2">Akhd Ceremony</div>
+                <div class="akt-message fade-text delay-3">By the grace of Allah, we humbly seek your good wishes for the newlyweds, and would be deeply honored to have you share this blessed occasion.</div>
 
-                <div class="akt-details-group fade-text delay-3">
+                <div class="akt-details-group fade-text delay-4">
                     <div class="akt-info-row">
                         <span class="akt-label"></br>Venue:</span>
-                        <span class="akt-value"></br>&nbsp;Railway Masjid, CRB</span>
+                        <span class="akt-value"></br>&nbsp;Railway Masjid, CRB.</span>
                     </div>
                     <div class="akt-info-row">
                         <span class="akt-label">Date:</span>
-                        <span class="akt-value">&nbsp;5<sup>th</sup> September, 2026</span>
+                        <span class="akt-value">&nbsp;5<sup>th</sup> September, 2026.</span>
                     </div>
                     <div class="akt-info-row">
                         <span class="akt-label">Time:</span>
-                        <span class="akt-value">&nbsp;Baad Asr Namaz</span>
+                        <span class="akt-value">&nbsp;Baad Asr Namaz.</span>
                     </div>
                 </div>
-                <div class="blessings-text fade-text delay-6">Blessings Only</div>
             </div>
         </div>
 
@@ -141,24 +148,24 @@
         <div class="card card-wedding" id="slide-3">
             <div class="wedding-content">
 
-                <div class="wedding-invite-text fade-text delay-1"></br>We Joyfully invite You To the </div>
-                <div class="wedding-title-main fade-text delay-2">Wedding Ceremony</div>
+                <img src="Wedding/WeddingArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
+                <div class="wedding-invite-text fade-text delay-2"></br>We Joyfully invite You To the </div>
+                <div class="wedding-title-main fade-text delay-3">Wedding Ceremony</div>
 
-                <div class="wedding-date-row fade-text delay-3">
+                <div class="wedding-date-row fade-text delay-4">
                     On Friday <span class="script-text">10<sup>th</sup> September, 2026</span>
                 </div>
 
-                <div class="wedding-venue-row fade-text delay-4">
-                    <span class="script-text">King Of Chittagong,</span> </br>Panchlaish, Chattogram
+                <div class="wedding-venue-row fade-text delay-5">
+                    <span class="script-text">King Of Chittagong,</span> </br>Panchlaish, Chattogram.
                 </div>
 
-                <div class="wedding-time-row fade-text delay-5">
+                <div class="wedding-time-row fade-text delay-6">
                     <span class="bar">|</span> Time : 8:00 P.M. <span class="bar">|</span>
                 </div>
                 <div class="wedding-honor-text fade-text delay-6">
                     Your presence will make our day truly complete.
                 </div>
-                <div class="blessings-text fade-text delay-6">Blessings Only</div>
 
             </div>
         </div>
@@ -166,23 +173,23 @@
         <!-- CARD 4 – WALIMA -->
         <div class="card card-walima" id="slide-4">
             <div class="walima-content">
-                <div class="walima-arabic fade-text delay-1">بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
-                <h2 class="walima-title-main fade-text delay-2">Walima</h2>
-                <p class="walima-message fade-text delay-3">With Joyful Hearts, We request The Honor Of<br>Your Presence And Blessing On The Auspicious<br>Occasion Of The Walima Ceremony</p>
+                <img src="Wedding/WalimaArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
+                <div class="walima-title-main fade-text delay-2">Walima Ceremony</div>
+                <div class="walima-message fade-text delay-3">With Joyful Hearts, We Request The Honor Of<br>Your Presence And Blessing On The Auspicious<br>Occasion Of The Walima Ceremony.</div>
 
                 <div class="walima-venue-label fade-text delay-4"></br>Venue</div>
                 <div class="walima-venue-name fade-text delay-4">Kings Of Chittagong,</div>
-                <div class="walima-venue-address fade-text delay-4">Panchlaish, Chattogram</div>
+                <div class="walima-venue-address fade-text delay-4">Panchlaish, Chattogram.</div>
 
                 <div class="walima-details-group fade-text delay-5">
                     <div class="walima-info-row">
                         <div class="walima-venue-label fade-text delay-4">Date</div>
                         <span class="walima-gold-value">12<sup>th</sup> September</br></span>
-                        <div class="walima-venue-label fade-text delay-4">2026</div>
+                        <div class="walima-venue-label fade-text delay-4">2026.</div>
                     </div>
                     <div class="walima-info-row">
                         <div class="walima-venue-label fade-text delay-4"></br>Time</div>
-                        <span class="walima-gold-label">8:00 P.M</span>
+                        <span class="walima-gold-label">8:00 P.M.</span>
                     </div>
                 </div>
                 <div class="blessings-text fade-text delay-6">Blessings Only</div>
@@ -248,7 +255,6 @@
     // ---- DOM references ----
     const app = document.getElementById('app');
     const slider = document.getElementById('slider');
-    const bgMusic = document.getElementById('bgMusic');
     const timerContainer = document.getElementById('timer-container');
     const loadingOverlay = document.getElementById('loading-overlay');
     const quranWrapper = document.getElementById('quranWrapper');
@@ -270,13 +276,10 @@
     let startX = 0;
     let startY = 0;
     let isDragging = false;
-    let musicPlaying = false;
     let quranAlreadyShown = false;
     let envelopeOpened = false;
     let quranTimer; // Timer for Quran auto-hide
     let peekInterval; // Timer for swipe hint animation
-
-    bgMusic.volume = 0.18;
 
     /**
      * Hides the Quran section and shows the invitation content
@@ -322,7 +325,7 @@
         };
 
         runPeek(); // First run
-        peekInterval = setInterval(runPeek, 7000);
+        peekInterval = setInterval(runPeek, 10000);
     }
 
     /**
@@ -365,15 +368,15 @@
         let targetEvent = events[eventIndex] && now < events[eventIndex].endTime ?
             events[eventIndex] : unfinished[0];
 
-        nameLabel.innerText = "Countdown to " + targetEvent.name;
+        nameLabel.innerText = ""; // Single-line countdown: the event name now lives in the display text
         const diff = targetEvent.startTime - now;
         if (diff > 0) {
             const d = Math.floor(diff / 86400000);
             const h = Math.floor((diff % 86400000) / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
-            if (d > 0) timeLabel.innerText = d + (d === 1 ? " Day " : " Days ") + "to go";
-            else if (h >= 1) timeLabel.innerText = h + " Hour to go";
-            else timeLabel.innerText = m + " Min to go";
+            if (d > 0) timeLabel.innerText = d + (d === 1 ? " Day" : " Days") + " to go for " + targetEvent.name;
+            else if (h >= 1) timeLabel.innerText = h + (h === 1 ? " Hour" : " Hours") + " to go for " + targetEvent.name;
+            else timeLabel.innerText = m + (m === 1 ? " Min" : " Mins") + " to go for " + targetEvent.name;
         } else {
             timeLabel.innerText = "Happening Now!";
         }
@@ -386,14 +389,6 @@
         slider.style.display = 'block';
         updateCountdown();
         setTimeout(() => { goToSlide(0); }, 800);
-
-        if (!musicPlaying) {
-            bgMusic.play().then(() => {
-                musicPlaying = true;
-            }).catch(() => {
-                // Auto-play blocked by browser; music stays off
-            });
-        }
     }
 
     function goToSlide(index) {
@@ -463,20 +458,6 @@
         if (!envelopeOpened) return;
         if (e.key === 'ArrowRight' && currentSlide < config.totalSlides - 1) goToSlide(currentSlide + 1);
         else if (e.key === 'ArrowLeft' && currentSlide > 0) goToSlide(currentSlide - 1);
-    });
-
-    /**
-     * Page Visibility Listener: Stop music when user leaves the tab
-     */
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            bgMusic.pause();
-        } else {
-            // Only resume if it was playing before and envelope is open
-            if (musicPlaying && envelopeOpened) {
-                bgMusic.play().catch(err => console.log("Auto-play blocked on resume"));
-            }
-        }
     });
 
     function preloadImages(urls) {

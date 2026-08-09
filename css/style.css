@@ -209,6 +209,7 @@ html, body {
     font-family: 'Great Vibes', cursive;
     font-size: 1.05rem;
     color: var(--text-main);
+    white-space: nowrap; /* Keep the countdown on a single line */
 }
 
 .slider {
@@ -327,22 +328,6 @@ html, body {
 .delay-6 { transition-delay: 1.3s; }
 
 /* ---- GLOBAL TYPOGRAPHY INSIDE CARDS ---- */
-.card h2 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
-    color: var(--text-main);
-    margin-bottom: 4px;
-    letter-spacing: 1px;
-}
-
-.card p {
-    font-size: 1.05rem;
-    color: var(--text-sub);
-    line-height: 1.7;
-    max-width: 100%;
-    margin: 4px auto;
-}
-
 .card .label {
     font-weight: 600;
     color: #3e2c28;
@@ -393,68 +378,87 @@ html, body {
 .card-intro {
     background-image: url('../Wedding/(BG)IntroductionCard.png');
     justify-content: flex-start;
-    padding-top: 90px !important; /* Minimal padding to start as high as possible */
+    padding-top: 45px !important;
 }
 
-.intro-title {
+.intro-title-script {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     color: #41563D;
-    margin-top: 0; /* Ensure no top margin */
-    margin-bottom: 5px; /* Tighter spacing */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .intro-lead {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    line-height: 1.2;
-    color: #41563D;
-    margin-bottom: 15px; /* Reduced margin */
-    padding: 0 5px;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    color: #000;
+    margin-top: 4px;
+    margin-bottom: 4px;
     font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
-.intro-name {
+.intro-name-groom, .intro-name-bride {
     font-family: 'Great Vibes', cursive;
-    font-size: 3rem;
-    color: #41563D;
-    margin: 4px 0; /* Reduced margin */
-    line-height: 1;
-    letter-spacing: 10px;
-}
-
-.intro-with {
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.4rem;
-    color: #41563D;
-    margin: 2px 0; /* Reduced margin */
-}
-
-.intro-parents {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    color: #41563D;
-    margin-top: 10px; /* Reduced margin */
+    font-size: 2rem;
+    color: #000;
+    margin: 0;
     line-height: 1.4;
     font-weight: 500;
 }
 
-.intro-regards {
+.intro-with-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: #000;
+    margin: -6px 0;
+}
+
+.intro-bride-parentage {
     font-family: 'Montserrat', sans-serif;
+    font-size: 0.67rem;
+    color: #000;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    font-weight: 400;
+}
+
+.intro-message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.44rem;
+    color: #000;
+    line-height: 1.4;
+    max-width: 82%;
+    margin: 0 auto 5px auto;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.intro-regards-container {
     text-align: right;
     width: 100%;
     padding-right: 30px;
-    margin-top: 0px;
-    font-size: 0.80rem;
-    color: #41563D;
-    line-height: 1.3;
+    margin-top: 0;
+    color: #000;
 }
 
-.intro-regards strong {
-    display: block;
-    margin-top: 2px;
-    font-weight: 600;
+.regards-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.70rem;
+    margin-bottom: 0;
+    font-weight: 300;
 }
+
+.regards-names {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
 
 /* ---- Quran section: Centered in middle with slide transitions ---- */
 .quran-wrapper {
@@ -707,7 +711,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 140px; /* Adjusted from 180px to prevent overflow */
+    padding-top: 112px; /* Reduced to make room for the Arabic line at the top */
     z-index: 5;
 }
 
@@ -715,6 +719,27 @@ html, body {
 .card-akt.active .fade-text {
     opacity: 1 !important;
     transform: translateY(0) !important;
+}
+
+/* Henna, Akt & Wedding: calligraphy image at top */
+.arabic-caligraphy-img {
+    width: 35%;
+    max-width: 160px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+/* Wedding: slightly larger calligraphy */
+.card-wedding .arabic-caligraphy-img {
+    width: 65%;
+    max-width: 210px;
+}
+
+/* Intro: calligraphy sized to fit inside the postcard frame */
+.card-intro .arabic-caligraphy-img {
+    width: 68%;
+    max-width: 300px;
+    margin-bottom: 2px;
 }
 
 .akt-title-main {
@@ -733,9 +758,8 @@ html, body {
     line-height: 1.2 !important;
     text-align: center;
     padding: 0 5px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-weight: 150;
-    padding bottom: 15 px;
 }
 
 .akt-details-group {
@@ -800,7 +824,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Push everything to the top */
-    padding: 135px 20px 0 20px; /* Top space via padding (was 5x </br>) */
+    padding: 125px 20px 0 20px; /* Pushed further down to the center-top area */
     z-index: 3;
 }
 
@@ -821,6 +845,7 @@ html, body {
 .wedding-title-main {
     font-family: 'Great Vibes', cursive !important;
     font-size: 2.3rem !important;
+    font-weight: 500;
     color: #000;
     margin: 0 0 3px 0 !important;
     text-align: center;
@@ -887,6 +912,19 @@ html, body {
 }
 
 /* ============================================================
+   ARABIC INVITATION TEXT (shared by Akt & Wedding cards)
+   ============================================================ */
+.arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 0.72rem;
+    color: #3e2723;
+    text-align: center;
+    direction: rtl;
+    padding: 0 15px;
+    margin-bottom: 5px;
+}
+
+/* ============================================================
    [CUSTOMISE] CARD 4: WALIMA
    ============================================================ */
 .card-walima {
@@ -922,9 +960,10 @@ html, body {
 
 .walima-title-main {
     font-family: 'Great Vibes', cursive;
-    font-size: 2.6rem !important; /* Slightly increased */
+    font-size: 2.2rem !important;
+    font-weight: 630;
     color: #3e2723;
-    margin: 0 0 5px 0 !important; /* Fixed typo and adjusted margin */
+    margin: 0 0 5px 0 !important;
     text-align: center;
 }
 
@@ -1001,6 +1040,7 @@ html, body {
     text-align: center;
     pointer-events: none;
     white-space: nowrap;
+    font-weight: 700;
 }
 
 /* Henna: blessings text sits inside the wrap, 3px below the pill button */
@@ -1008,28 +1048,31 @@ html, body {
     position: static;
 }
 
-/* All cards (incl. invitation): 5px above the bottom of the card */
-.card-intro .blessings-text,
-.card-akt .blessings-text,
-.card-wedding .blessings-text,
+/* Walima: 'Blessings Only' stays at the bottom of the card (previous place) */
 .card-walima .blessings-text {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 20px;
+    font-weight: 500; /* Slightly lighter than the default 700 */
+}
+
+/* Desktop / tablets: keep the postcard at its native 9:16 portrait ratio
+   so it isn't stretched into a tall skinny shape on wide screens.
+   On phones (below 768px) the original 91vw x 82vh sizing is kept. */
+@media (min-width: 768px) {
+    .slider {
+        width: min(91vw, 428px, calc(82vh / 1.78));
+        height: min(82vh, calc(min(91vw, 428px) * 1.78));
+    }
 }
 
 /* Responsive scaling for mobile devices */
 @media (max-width: 480px) {
     .tap-hint { font-size: 1.6rem; top: -45px; }
-    h1 { font-size: 2rem; }
-    .card h2 { font-size: 1.6rem; }
-    .card p { font-size: 0.9rem; max-width: 95%; }
     .quran-arabic { font-size: 1.2rem; }
-    .card-intro { padding-top: 100px; } /* Slightly more padding on mobile */
 }
 
 @media (max-width: 380px) {
     .quran-arabic { font-size: 1rem; }
-    .card h2 { font-size: 1.3rem; }
 }
