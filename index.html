@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Wedding Invitation</title>
 
+    <!-- Favicon (inline SVG heart — avoids a 404 for /favicon.ico) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>" />
+
     <!-- Meta Tags -->
     <meta property="og:title" content="Wedding Invitation" />
     <meta property="og:description" content="We cordially invite you to celebrate the wedding journey of our family. Join us for Holud, Akt, Wedding & Walima ceremonies!" />
@@ -15,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Monte+Carlo&family=Amiri:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=1.0.48">
+    <link rel="stylesheet" href="css/style.css?v=1.0.74">
 </head>
 <body>
 
@@ -37,15 +40,8 @@
         <div class="envelope-base"></div>
     </div>
 
-    <!-- Countdown Timer -->
-    <div id="timer-container">
-        <div class="timer-label" id="timer-target-name">Countdown</div>
-        <div id="timer-display">Calculating...</div>
-    </div>
-
     <!-- Slider -->
     <div class="slider" id="slider">
-        <div class="swipe-hint">Swipe to see more →</div>
 
         <!-- CARD 0 – INTRODUCTION -->
         <div class="card card-intro" id="slide-0">
@@ -59,7 +55,7 @@
 
                 <div class="intro-title-script fade-text delay-2">Invitation</div>
 
-                <div class="intro-lead fade-text delay-3">We Cordially Invite You To<br>The Wedding Ceremony Of Our Son</div>
+                <div class="intro-lead fade-text delay-3">We Cordially Invite You<br>To The Wedding Ceremony Of Our Son</div>
 
                 <div class="intro-name-groom fade-text delay-4">Mohammed Tazrian</div>
 
@@ -67,39 +63,45 @@
 
                 <div class="intro-name-bride fade-text delay-4">Tashfiha Faruk</div>
 
-                <div class="intro-bride-parentage fade-text delay-5">Daughter Of <strong>Mohammed Faruk & Rasheda Begum.</strong></div>
+                <div class="intro-bride-parentage fade-text delay-5"><span class="lead-font">Daughter Of</span> <strong>Mohammed Faruk & Rasheda Begum.</strong></div>
 
                 <div class="intro-message fade-text delay-5">MAY WE HUMBLY REQUEST YOUR GRACIOUS BLESSINGS FOR THE NEWLYWEDS AS THEY BEGIN THEIR LIFE TOGETHER.</div>
 
                 <div class="intro-regards-container fade-text delay-6">
                     <div class="regards-label">Regards</div>
-                    <div class="regards-names">Mohammed Musa<br>& Nasrin Sultana</div>
+                    <div class="regards-names">Mohammed Musa & Nasrin Sultana</div>
                 </div>
 
             </div>
         </div>
 
+        <!-- Countdown between the intro card and the first event card -->
+        <div id="timer-container" class="timer-reveal">
+            <div class="timer-label">Countdown</div>
+            <div id="timer-display">Calculating...</div>
+        </div>
+
         <!-- CARD 1 – GAYE HOLUD -->
         <div class="card card-henna" id="slide-1">
             <div class="henna-content">
-                <div class="henna-join fade-text delay-1">Join us for a colorful</div>
-                <div class="henna-title fade-text delay-2">Holud</div>
+                <div class="henna-join fade-text anim-right delay-1">Join us for a colorful</div>
+                <div class="henna-title fade-text anim-up delay-2">Holud</div>
 
-                <div class="henna-details fade-text delay-3">
+                <div class="henna-details fade-text anim-left delay-3">
                     <div><strong>Venue:</strong> Bagan Bari (Isahoque Haji)</div>
                     <div class="henna-venue-address">Haji Neyamot Ali Road, Hatazari.</div>
-                    <div><strong>Date:</strong> 4<sup>th</sup> September, 2026.</div>
-                    <div><strong>Time:</strong> 7 P.M.</div>
+                    <div><strong>Date:</strong> Friday, 4<sup>th</sup> September, 2026.</div>
+                    <div><strong>Time:</strong> 7 P.M.<br><br></div>
                 </div>
 
-                <div class="henna-dress-code fade-text delay-4">
+                <div class="henna-dress-code fade-text anim-right delay-4">
                     <div class="girls-code">
                         <div class="code-label underline">Dress code: Girls </div>
-                        <em>Lehenga/ saree</em>
+                        <em>Lehenga/Saree</em>
 
-                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;Golden Yellow/ Rasberry/ &nbsp;&nbsp;&nbsp;&nbsp;Rose pink</div>
+                        <div class="color-names-para">Golden Yellow/ Rasberry/&nbsp;Rose pink</div>
                         <div class="color-palate">
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="circle" style="background: #FFD700;"></span>
+                            &nbsp;<span class="circle" style="background: #FFD700;"></span>
                             <span class="circle" style="background: #D21F5A;"></span>
                             <span class="circle" style="background: #E77394;"></span>
                         </div>
@@ -108,93 +110,129 @@
                     <div class="boys-code">
                         <div class="code-label underline"><br>Dress Code: Boys</div>
                         <div class><em>Panjabi</em></div>
-                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;Off White &nbsp;&nbsp;&nbsp;&nbsp;<span class="circle" style="background: #FAF9F6;"></span></div>
+                        <div class="color-names-para">&nbsp;&nbsp;&nbsp;&nbsp;Off White<br>&nbsp;<span class="circle" style="background: #FAF9F6;"></span></div>
                     </div>
                 </div>
 
-                <div class="henna-btn-wrap">
-                    <a href="https://maps.app.goo.gl/J93TdScdxwhxtAHRA" target="_blank" class="henna-location-btn fade-text delay-5">
-                        <span class="pin-icon">📍</span> <span class="btn-text">Bagan bari Location</span>
-                    </a>
-                </div>
             </div>
+        </div>
+
+        <!-- Holud venue: small interactive map + open-in-maps link -->
+        <div class="holud-map-box" id="holudMap">
+            <div class="holud-map-title">Venue Location</div>
+            <div class="holud-map-frame">
+                <iframe
+                    src="https://www.google.com/maps?q=22.4223299,91.856895&z=15&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                    title="Bagan Bari location map"></iframe>
+            </div>
+            <a class="holud-map-link" href="https://maps.app.goo.gl/J93TdScdxwhxtAHRA" target="_blank" rel="noopener">View on Google Maps</a>
+        </div>
+
+        <!-- Engagement ring divider above the Akt card — marks the start of a new page -->
+        <div class="engagement-divider">
+            <span class="divider-line"></span>
+            <img src="Wedding/Engagement_ring_Animation.png?v=1.0.15" alt="Engagement Ring" class="engagement-ring" />
+            <span class="divider-line"></span>
         </div>
 
         <!-- CARD 2 – AKHD CEREMONY -->
         <div class="card card-akt" id="slide-2">
             <div class="akt-content">
-                <img src="Wedding/AktArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
-                <div class="akt-title-main fade-text delay-2">Akhd Ceremony</div>
-                <div class="akt-message fade-text delay-3">By the grace of Allah, we humbly seek your good wishes for the newlyweds, and would be deeply honored to have you share this blessed occasion.</div>
+                <img src="Wedding/AktArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text anim-zoom anim-blur delay-1" />
+                <div class="akt-title-main fade-text anim-up delay-2">Akhd Ceremony</div>
+                <div class="akt-message fade-text anim-left delay-3">By The Grace Of Allah, We Humbly Seek Your Good Wishes For The Newlyweds, And Would Be Deeply Honored To Have You Share This Blessed Occasion.</div>
 
-                <div class="akt-details-group fade-text delay-4">
+                <div class="akt-details-group fade-text anim-up delay-4">
                     <div class="akt-info-row">
-                        <span class="akt-label"></br>Venue:</span>
-                        <span class="akt-value"></br>&nbsp;Railway Masjid, CRB.</span>
+                        <div class="akt-label">Venue</div>
+                        <div class="akt-value">Railway Masjid, CRB.</div>
                     </div>
                     <div class="akt-info-row">
-                        <span class="akt-label">Date:</span>
-                        <span class="akt-value">&nbsp;5<sup>th</sup> September, 2026.</span>
+                        <div class="akt-label">Date</div>
+                        <div class="akt-value">Saturday, 5<sup>th</sup> September, 2026.</div>
                     </div>
                     <div class="akt-info-row">
-                        <span class="akt-label">Time:</span>
-                        <span class="akt-value">&nbsp;Baad Asr Namaz.</span>
+                        <div class="akt-label">Time</div>
+                        <div class="akt-value">Baad Asr Namaz.</div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Wedding animation divider between Akt and Wedding cards -->
+        <div class="engagement-divider">
+            <span class="divider-line"></span>
+            <img src="Wedding/wedding_Animation.png?v=1.0.15" alt="Wedding Animation" class="divider-animation-img" />
+            <span class="divider-line"></span>
         </div>
 
         <!-- CARD 3 – THE WEDDING -->
         <div class="card card-wedding" id="slide-3">
             <div class="wedding-content">
 
-                <img src="Wedding/WeddingArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
-                <div class="wedding-invite-text fade-text delay-2"></br>We Joyfully invite You To the </div>
-                <div class="wedding-title-main fade-text delay-3">Wedding Ceremony</div>
+                <img src="Wedding/WeddingArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text anim-zoom anim-blur delay-1" />
+                <div class="wedding-invite-text fade-text anim-right delay-2">We Joyfully invite You To the </div>
+                <div class="wedding-title-main fade-text anim-up delay-3">Wedding Ceremony</div>
 
-                <div class="wedding-date-row fade-text delay-4">
-                    On Friday <span class="script-text">10<sup>th</sup> September, 2026</span>
+                <div class="wedding-date-row fade-text anim-left delay-4">
+                    On Thrusday, <span class="script-text">10<sup>th</sup> September, 2026</span>
                 </div>
 
-                <div class="wedding-venue-row fade-text delay-5">
+                <div class="wedding-venue-row fade-text anim-right delay-5">
                     <span class="script-text">King Of Chittagong,</span> </br>Panchlaish, Chattogram.
                 </div>
 
-                <div class="wedding-time-row fade-text delay-6">
+                <div class="wedding-time-row fade-text anim-up delay-6">
                     <span class="bar">|</span> Time : 8:00 P.M. <span class="bar">|</span>
                 </div>
-                <div class="wedding-honor-text fade-text delay-6">
+                <div class="wedding-honor-text fade-text anim-left delay-6">
                     Your presence will make our day truly complete.
                 </div>
 
             </div>
         </div>
 
+        <!-- Walima animation divider between Wedding and Walima cards -->
+        <div class="engagement-divider">
+            <span class="divider-line"></span>
+            <img src="Wedding/WalimaCarAnimation.png?v=1.0.15" alt="Walima Animation" class="divider-animation-img" />
+            <span class="divider-line"></span>
+        </div>
+
         <!-- CARD 4 – WALIMA -->
         <div class="card card-walima" id="slide-4">
             <div class="walima-content">
-                <img src="Wedding/WalimaArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text delay-1" />
-                <div class="walima-title-main fade-text delay-2">Walima Ceremony</div>
-                <div class="walima-message fade-text delay-3">With Joyful Hearts, We Request The Honor Of<br>Your Presence And Blessing On The Auspicious<br>Occasion Of The Walima Ceremony.</div>
+                <img src="Wedding/WalimaArabicCaligraphy.png?v=1.0.15" alt="Arabic Calligraphy" class="arabic-caligraphy-img fade-text anim-zoom anim-blur delay-1" />
+                <div class="walima-title-main fade-text anim-up delay-2">Walima Ceremony</div>
+                <div class="walima-message fade-text anim-left delay-3">With Joyful Hearts, We Request The Honor Of<br>Your Presence And Blessing On The Auspicious<br>Occasion Of The Walima Ceremony.</div>
 
-                <div class="walima-venue-label fade-text delay-4"></br>Venue</div>
-                <div class="walima-venue-name fade-text delay-4">Kings Of Chittagong,</div>
-                <div class="walima-venue-address fade-text delay-4">Panchlaish, Chattogram.</div>
+                <div class="walima-venue-label fade-text anim-right delay-4"></br>Venue</div>
+                <div class="walima-venue-name fade-text anim-left delay-4">Kings Of Chittagong,</div>
+                <div class="walima-venue-address fade-text anim-right delay-4">Panchlaish, Chattogram.</div>
 
-                <div class="walima-details-group fade-text delay-5">
+                <div class="walima-details-group fade-text anim-up delay-5">
                     <div class="walima-info-row">
-                        <div class="walima-venue-label fade-text delay-4">Date</div>
-                        <span class="walima-gold-value">12<sup>th</sup> September</br></span>
-                        <div class="walima-venue-label fade-text delay-4">2026.</div>
+                        <div class="walima-venue-label">Date</div>
+                        <span class="walima-gold-value">Saturday, 12<sup>th</sup> September</br></span>
+                        <div class="walima-venue-label">2026.</div>
                     </div>
                     <div class="walima-info-row">
-                        <div class="walima-venue-label fade-text delay-4"></br>Time</div>
+                        <div class="walima-venue-label"></br>Time</div>
                         <span class="walima-gold-label">8:00 P.M.</span>
                     </div>
                 </div>
-                <div class="blessings-text fade-text delay-6">Blessings Only</div>
+                <div class="blessings-text fade-text anim-up delay-6">Blessings Only</div>
             </div>
         </div>
+    </div>
+
+    <!-- Scroll hint pinned to the bottom of the first screen -->
+    <div class="scroll-hint" id="scrollHint">
+        <span class="scroll-hint-text">Scroll to explore</span>
+        <span class="scroll-hint-arrow">↓</span>
     </div>
 </div>
 
@@ -223,7 +261,6 @@
     const showHolud = normalizedSearch === "?" + SECRET_WORD;
 
     const config = {
-        totalSlides: showHolud ? 5 : 4, // Intro + Holud/Akt/Wedding/Walima (or without Holud)
         weddingEvents: showHolud ? [
             { name: "Holud", month: 8, day: 4 },
             { name: "Akt", month: 8, day: 5 },
@@ -245,17 +282,17 @@
             'Wedding/(BG)Walima.png'
         ].map(url => `${url}?v=${version}`),
         quranTiming: {
-            delayBeforeShow: 400,
-            showDuration: 5000,
+            // Wait for the intro card's slow arrival (1.15s delay + 1.5s
+            // animation) before revealing the Quran verse on top of it.
+            delayBeforeShow: 2400,
+            showDuration: 3000, // The first Arabic verse now stays for 3 seconds
             delayBeforeHide: 400
-        },
-        swipeThreshold: 40
+        }
     };
 
     // ---- DOM references ----
     const app = document.getElementById('app');
     const slider = document.getElementById('slider');
-    const timerContainer = document.getElementById('timer-container');
     const loadingOverlay = document.getElementById('loading-overlay');
     const quranWrapper = document.getElementById('quranWrapper');
     const invitationContent = document.getElementById('invitationContent');
@@ -265,6 +302,9 @@
     if (!showHolud) {
         const holudCard = document.getElementById('slide-1');
         if (holudCard) holudCard.remove();
+        // The Holud venue map belongs to the Holud card — hide it too
+        const holudMap = document.getElementById('holudMap');
+        if (holudMap) holudMap.remove();
         // Renumber the remaining slides (slide-2 → slide-1, etc.)
         document.querySelectorAll('.card[id^="slide-"]').forEach((el, i) => {
             el.id = `slide-${i}`;
@@ -272,14 +312,9 @@
     }
 
     // ---- State variables ----
-    let currentSlide = 0;
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
     let quranAlreadyShown = false;
     let envelopeOpened = false;
     let quranTimer; // Timer for Quran auto-hide
-    let peekInterval; // Timer for swipe hint animation
 
     /**
      * Hides the Quran section and shows the invitation content
@@ -302,30 +337,7 @@
             quranWrapper.classList.add('hidden-forever');
             quranAlreadyShown = true;
             invitationContent.classList.add('visible');
-
-            // Trigger peek animation to hint swiping
-            triggerSwipePeek();
         }, config.quranTiming.delayBeforeHide);
-    }
-
-    /**
-     * Visual peek animation to guide users to swipe.
-     * Repeats every 7 seconds until the user swiped away from slide 0.
-     */
-    function triggerSwipePeek() {
-        const runPeek = () => {
-            if (currentSlide !== 0) {
-                clearInterval(peekInterval);
-                peekInterval = null;
-                return;
-            }
-            slider.classList.remove('peek-animation');
-            void slider.offsetWidth; // Force reflow to allow re-triggering the same animation
-            slider.classList.add('peek-animation');
-        };
-
-        runPeek(); // First run
-        peekInterval = setInterval(runPeek, 10000);
     }
 
     /**
@@ -335,6 +347,10 @@
         hideQuranAndShowInvite();
     }
 
+    /**
+     * Countdown strip: shows the time until the next upcoming ceremony.
+     * It sits in the scroll flow between the intro card and the first event.
+     */
     function updateCountdown() {
         const now = new Date();
         const currentYear = now.getFullYear();
@@ -347,28 +363,15 @@
             };
         });
 
-        if (currentSlide === 0) {
-            timerContainer.style.opacity = '0';
-            return;
-        }
-
         const unfinished = events.filter(e => now < e.endTime);
-        const nameLabel = document.getElementById('timer-target-name');
         const timeLabel = document.getElementById('timer-display');
 
         if (unfinished.length === 0) {
-            timerContainer.style.opacity = '1';
-            nameLabel.innerText = "";
             timeLabel.innerText = "Thanks for celebrating with us";
             return;
         }
 
-        timerContainer.style.opacity = '1';
-        const eventIndex = currentSlide - 1;
-        let targetEvent = events[eventIndex] && now < events[eventIndex].endTime ?
-            events[eventIndex] : unfinished[0];
-
-        nameLabel.innerText = ""; // Single-line countdown: the event name now lives in the display text
+        const targetEvent = unfinished[0]; // The next ceremony in the list
         const diff = targetEvent.startTime - now;
         if (diff > 0) {
             const d = Math.floor(diff / 86400000);
@@ -382,83 +385,77 @@
         }
     }
 
+    /**
+     * Plays the Quran intro on the first card once the envelope opens.
+     */
+    function startIntroSequence() {
+        if (quranAlreadyShown) {
+            invitationContent.classList.add('visible');
+            return;
+        }
+
+        // Initial delay before showing Quran
+        setTimeout(() => {
+            quranWrapper.classList.add('visible');
+
+            // Set auto-hide timer (5 seconds)
+            quranTimer = setTimeout(hideQuranAndShowInvite, config.quranTiming.showDuration);
+
+            // Add one-time listeners for click/touch skip
+            document.addEventListener('mousedown', handleQuranSkip, { once: true });
+            document.addEventListener('touchstart', handleQuranSkip, { once: true });
+        }, config.quranTiming.delayBeforeShow);
+    }
+
     function openEnvelope() {
         if (envelopeOpened) return;
         envelopeOpened = true;
         envelope.classList.add('open');
-        slider.style.display = 'block';
+        slider.classList.add('opened'); // Reveals the cards & triggers the first card's graceful arrival
+        window.scrollTo(0, 0); // Start the card stack at the top
         updateCountdown();
-        setTimeout(() => { goToSlide(0); }, 800);
+        startIntroSequence();
+        // Show the scroll hint once the intro card has finished arriving
+        setTimeout(() => {
+            const hint = document.getElementById('scrollHint');
+            if (hint) hint.classList.add('show');
+        }, 2900);
     }
 
-    function goToSlide(index) {
-        // Stop the peek hint once the user moves away from the first slide
-        if (index !== 0 && peekInterval) {
-            clearInterval(peekInterval);
-            peekInterval = null;
-        }
+    // ---- Scroll-based cards (no swiping) ----
+    // Each card's text fades in once the card scrolls into view.
+    const slides = Array.from(document.querySelectorAll('.card'));
 
-        const prevSlide = document.getElementById(`slide-${currentSlide}`);
-        if (prevSlide) prevSlide.classList.remove('active');
-        currentSlide = index;
-        const newSlide = document.getElementById(`slide-${currentSlide}`);
-        if (newSlide) newSlide.classList.add('active');
-
-        if (currentSlide === 0) {
-            slider.classList.add('show-swipe');
-            if (!quranAlreadyShown) {
-                // Initial delay before showing Quran
-                setTimeout(() => {
-                    quranWrapper.classList.add('visible');
-
-                    // Set auto-hide timer (5 seconds)
-                    quranTimer = setTimeout(hideQuranAndShowInvite, config.quranTiming.showDuration);
-
-                    // Add one-time listeners for click/touch skip
-                    document.addEventListener('mousedown', handleQuranSkip, { once: true });
-                    document.addEventListener('touchstart', handleQuranSkip, { once: true });
-                }, config.quranTiming.delayBeforeShow);
-            } else {
-                invitationContent.classList.add('visible');
+    function updateVisibleSlide() {
+        const viewportBottom = window.innerHeight;
+        slides.forEach((slide) => {
+            if (slide.getBoundingClientRect().top < viewportBottom) {
+                slide.classList.add('active');
             }
-        } else {
-            slider.classList.remove('show-swipe');
-        }
-        updateCountdown();
+        });
     }
 
-    function handleDragStart(e) {
-        if (!envelopeOpened) return;
-        if (!e.target.closest('.slider')) return;
-        isDragging = true;
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
-        startY = e.touches ? e.touches[0].clientY : e.clientY;
-    }
+    window.addEventListener('scroll', updateVisibleSlide, { passive: true });
+    // Dismiss the scroll hint as soon as the guest starts scrolling
+    window.addEventListener('scroll', () => {
+        const hint = document.getElementById('scrollHint');
+        if (hint) hint.classList.remove('show');
+    }, { passive: true, once: true });
 
-    function handleDragEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
-        const endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-        const diffX = startX - endX;
-        const diffY = startY - endY;
-        if (Math.abs(diffX) > config.swipeThreshold && Math.abs(diffX) > Math.abs(diffY) * 0.6) {
-            if (diffX > 0 && currentSlide < config.totalSlides - 1) goToSlide(currentSlide + 1);
-            else if (diffX < 0 && currentSlide > 0) goToSlide(currentSlide - 1);
-        }
-    }
+    // ---- Scroll reveal: every text & photo glides in as it enters the viewport ----
+    // Each element is revealed individually (with its own tiny stagger), so a
+    // card fills in as a wave while the guest scrolls. Elements re-animate
+    // every time they enter the viewport (including scrolling back up), which
+    // keeps the page feeling alive. Nested .fade-text elements (e.g. labels
+    // inside an animated group) are skipped so they don't double-animate.
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            entry.target.classList.toggle('revealed', entry.isIntersecting);
+        });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
 
-    slider.addEventListener('touchstart', handleDragStart, { passive: true });
-    slider.addEventListener('touchend', handleDragEnd, { passive: true });
-    slider.addEventListener('touchmove', (e) => isDragging && e.preventDefault(), { passive: false });
-    slider.addEventListener('mousedown', handleDragStart);
-    document.addEventListener('mouseup', handleDragEnd);
-
-    document.addEventListener('keydown', (e) => {
-        if (!envelopeOpened) return;
-        if (e.key === 'ArrowRight' && currentSlide < config.totalSlides - 1) goToSlide(currentSlide + 1);
-        else if (e.key === 'ArrowLeft' && currentSlide > 0) goToSlide(currentSlide - 1);
-    });
+    document.querySelectorAll('.card:not(.card-intro) .fade-text:not(.fade-text .fade-text), .engagement-divider, .holud-map-box, .timer-reveal')
+        .forEach((el) => revealObserver.observe(el));
 
     function preloadImages(urls) {
         return new Promise((resolve) => {

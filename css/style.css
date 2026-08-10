@@ -23,8 +23,8 @@
 
 html, body {
     width: 100%;
-    height: 100%;
-    overflow: hidden; /* Prevent scrolling the whole page */
+    height: auto;
+    overflow: visible; /* The page scrolls through the stacked cards on every device */
     font-family: 'Georgia', serif;
     background: var(--card-bg);
 }
@@ -105,10 +105,9 @@ html, body {
 #app {
     position: relative;
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: auto;
+    min-height: 100vh;
+    display: block;
     background: var(--card-bg);
     opacity: 0;
     transition: opacity 0.6s ease;
@@ -119,7 +118,10 @@ html, body {
 }
 
 .envelope-container {
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 90vw;
     max-width: 450px;
     height: 60vh;
@@ -129,7 +131,6 @@ html, body {
     justify-content: center;
     align-items: center;
     transition: opacity 1s ease 1.5s;
-    margin-left: 20px;
 }
 
 .tap-hint {
@@ -183,134 +184,203 @@ html, body {
 .envelope-container.open .right-half { transform: translateX(150%); }
 .envelope-container.open { pointer-events: none; opacity: 0; }
 
+/* Hide the "Tap to Open" hint right away (a bit earlier than the
+   envelope's own fade, which waits for the halves to slide open) */
+.envelope-container.open .tap-hint {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
 /* ============================================================
-   TIMER & SLIDER (EVENT VIEW)
+   COUNTDOWN STRIP & SLIDER (EVENT VIEW)
    ============================================================ */
+/* The countdown lives in the scroll flow, between the intro card
+   and the first event card. */
 #timer-container {
-    position: absolute;
-    top: 15px;
     width: 100%;
     text-align: center;
-    opacity: 0;
-    z-index: 50;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+    padding: 30px 16px;
+    background: var(--card-bg);
+    border-top: 1px solid rgba(201, 168, 76, 0.3);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 20px; /* Matches the rounded cards */
 }
 
 .timer-label {
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.68rem;
     color: #8d6e63;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 #timer-display {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.05rem;
+    font-size: 1.35rem;
     color: var(--text-main);
     white-space: nowrap; /* Keep the countdown on a single line */
 }
 
+/* Cards stack top-to-bottom and the page scrolls. The column is
+   full width on phones and a fixed-width, centered column on PC. */
 .slider {
     position: relative;
-    width: 91vw;
-    max-width: 428px;
-    height: 82vh;
-    display: none;
-    margin-top: 15px;
-    touch-action: none;
-    user-select: none;
-}
-
-.swipe-hint {
-    position: absolute;
-    top: -45px;
-    left: 0;
     width: 100%;
-    text-align: center;
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.56rem;
-    color: var(--text-sub);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.6s ease;
-    z-index: 20;
+    max-width: 428px;
+    margin: 0 auto;
+    display: none;
+    touch-action: auto;
 }
 
-.slider.show-swipe .swipe-hint {
-    opacity: 1;
-    animation: pulseHint 2s infinite;
+/* Once opened: the cards stack as a column with even breathing room
+   between them — the same kind of empty gap as around the countdown
+   strip — so every card sits comfortably apart. */
+.slider.opened {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-bottom: 48px;
 }
-
-/* Peek animation to hint swiping for better UX */
-@keyframes cardPeek {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(-60px); }
-    60% { transform: translateX(0); }
-    80% { transform: translateX(-20px); }
-    100% { transform: translateX(0); }
-}
-
-.peek-animation {
-    animation: cardPeek 1.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes pulseHint {
-    0%, 100% { opacity: 0.6; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(-5px); }
-}
-
 /* ============================================================
    CARD BASE STYLES
    ============================================================ */
+/* Full-bleed 9:16 cards stacked in the page flow — width-driven, so
+   the card looks identical on every device. The page scrolls through
+   them; a card scrolls as one piece (no inner scroll). */
 .card {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
     background-color: var(--card-bg);
     background-size: 100% 100%;
     background-position: center;
-    border-radius: 20px;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 25px 20px;
-    opacity: 0;
-    transform: scale(0.9) translateY(30px);
-    transition: all 0.8s ease-out;
-    pointer-events: none;
-    overflow-y: auto;
-    scrollbar-width: none;    /* Firefox: hide the scrollbar */
-    -ms-overflow-style: none; /* Legacy Edge/IE: hide the scrollbar */
-}
-
-/* Chrome/Safari/new Edge: hide the scrollbar on cards.
-   Cards remain scrollable on small screens (overflow-y: auto above). */
-.card::-webkit-scrollbar {
-    display: none;
-}
-
-.card.active {
     opacity: 1;
-    transform: scale(1) translateY(0);
     pointer-events: auto;
-    z-index: 10;
+    overflow: hidden;
+    border-radius: 22px; /* Softly rounded postcard corners */
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07); /* Gentle lift so cards stand out */
 }
 
-.fade-text {
+/* The first (Arabic calligraphy) card glides in gracefully just after
+   the envelope opens: 1.15s delay (the envelope halves take 1.2s to
+   slide apart) then a slow fade + gentle rise. 'both' fill keeps the
+   card hidden during the delay so it appears only when the envelope is
+   done opening. */
+@keyframes cardArrive {
+    from { opacity: 0; transform: translateY(55px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.slider.opened .card-intro {
+    animation: cardArrive 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.15s both,
+               introNudge 2.2s ease-in-out 2.9s 2;
+}
+
+/* After arriving, the intro card nudges up first (like the page
+   starting to scroll down), then settles back — plays exactly twice */
+@keyframes introNudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Scroll hint pill pinned to the bottom of the first screen */
+.scroll-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 40px;
+    background: rgba(255, 255, 240, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    z-index: 90;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity var(--fade-dur) ease, transform var(--fade-dur) ease;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
 }
 
-/* Staggered animation triggers */
-.card.active:not(.card-intro) .fade-text {
+.scroll-hint.show {
     opacity: 1;
-    transform: translateY(0);
+}
+
+.scroll-hint-arrow {
+    font-size: 0.75rem;
+    color: var(--gold);
+    animation: hintBob 1.3s ease-in-out infinite;
+}
+
+.scroll-hint-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.56rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-main);
+    white-space: nowrap; /* Keeps the hint on a single line */
+}
+
+@keyframes hintBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+/* Scroll-reveal base: every text/photo starts hidden and animates in
+   as the guest scrolls. Direction & distance come from --reveal-*
+   custom properties, so each element can glide in from its own side. */
+.fade-text {
+    --reveal-x: 0px;
+    --reveal-y: 22px;
+    --reveal-scale: 1;
+    opacity: 0;
+    transform: translate(var(--reveal-x), var(--reveal-y)) scale(var(--reveal-scale));
+    transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), filter 0.85s ease;
+    will-change: opacity, transform;
+}
+
+/* Directional entrances — applied per element for a choreographed feel */
+.anim-up    { --reveal-y: 40px; }
+.anim-left  { --reveal-x: -50px; --reveal-y: 0px; }
+.anim-right { --reveal-x: 50px;  --reveal-y: 0px; }
+.anim-zoom  { --reveal-x: 0px; --reveal-y: 0px; --reveal-scale: 0.55; }
+.anim-blur  { --reveal-x: 0px; --reveal-y: 0px; filter: blur(10px); }
+
+/* Revealed — IntersectionObserver toggles this as elements enter/leave view */
+.fade-text.revealed,
+.engagement-divider.revealed,
+.holud-map-box.revealed,
+.timer-reveal.revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+}
+
+/* Dividers, the venue map and the countdown strip also animate in */
+.engagement-divider {
+    opacity: 0;
+    transform: scale(0.72);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.holud-map-box {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timer-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* For Intro Card: Only show text after Quran sequence is complete */
@@ -319,7 +389,8 @@ html, body {
     transform: translateY(0);
 }
 
-/* Delay classes for staggered animations */
+/* Delay classes — big cascade for the intro card, wave stagger for the
+   scroll-revealed cards */
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.6s; }
 .delay-3 { transition-delay: 1s; }
@@ -327,50 +398,13 @@ html, body {
 .delay-5 { transition-delay: 1.2s; }
 .delay-6 { transition-delay: 1.3s; }
 
-/* ---- GLOBAL TYPOGRAPHY INSIDE CARDS ---- */
-.card .label {
-    font-weight: 600;
-    color: #3e2c28;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-}
-
-.card .detail {
-    font-size: 1rem;
-    color: #4e342e;
-}
-
-/* ============================================================
-   LOCATION BUTTONS
-   ============================================================ */
-.location-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 24px;
-    border-radius: 50px;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Georgia', serif;
-    font-size: 0.9rem;
-    margin-top: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(10px);
-    border: none;
-    cursor: pointer;
-}
-
-.active .location-pill {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1s ease 1s, transform 1s ease 1s, background 0.3s ease;
-}
-
-.location-pill:hover {
-    transform: scale(1.05);
-}
+/* Scroll cards: a quick wave cascade as each element enters the viewport */
+.card:not(.card-intro) .delay-1 { transition-delay: 0.05s; }
+.card:not(.card-intro) .delay-2 { transition-delay: 0.12s; }
+.card:not(.card-intro) .delay-3 { transition-delay: 0.19s; }
+.card:not(.card-intro) .delay-4 { transition-delay: 0.26s; }
+.card:not(.card-intro) .delay-5 { transition-delay: 0.33s; }
+.card:not(.card-intro) .delay-6 { transition-delay: 0.4s; }
 
 /* ============================================================
    [CUSTOMISE] CARD 0: INTRODUCTION
@@ -378,25 +412,36 @@ html, body {
 .card-intro {
     background-image: url('../Wedding/(BG)IntroductionCard.png');
     justify-content: flex-start;
-    padding-top: 45px !important;
+    padding-top: 50px !important; /* Pushes all content (incl. Arabic calligraphy) further down */
 }
 
 .intro-title-script {
     font-family: 'Great Vibes', cursive;
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     color: #41563D;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-weight: 400;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-weight: 470;
 }
 
 .intro-lead {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    line-height: 1.3;
+    font-size: 0.63rem;
+    line-height: 1.2;
     color: #000;
     margin-top: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Used only on the words "Daughter Of" so they match the
+   "...Our Son" lead line font */
+.lead-font {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.63rem;
+    line-height: 1.3;
+    color: #000;
     font-weight: 500;
     letter-spacing: 0.5px;
 }
@@ -412,18 +457,16 @@ html, body {
 
 .intro-with-script {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.7rem;
+    font-size: 1.1rem;
     color: #000;
-    margin: -6px 0;
+    margin: 5px px 0;
 }
 
 .intro-bride-parentage {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.67rem;
-    color: #000;
-    margin-top: 2px;
-    margin-bottom: 4px;
-    font-weight: 400;
+    font-weight: 580;
+    line-height: 1.1;
 }
 
 .intro-message {
@@ -432,16 +475,15 @@ html, body {
     color: #000;
     line-height: 1.4;
     max-width: 82%;
-    margin: 0 auto 5px auto;
-    font-weight: 600;
+    margin: 18px auto 10px auto;
+    font-weight: 550;
     letter-spacing: 0.5px;
 }
 
 .intro-regards-container {
-    text-align: right;
+    text-align: center;
     width: 100%;
-    padding-right: 30px;
-    margin-top: 0;
+    margin-top: 10px; /* Lowered further down the card */
     color: #000;
 }
 
@@ -455,7 +497,7 @@ html, body {
 .regards-names {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.67rem;
-    font-weight: 700;
+    font-weight: 580;
     line-height: 1.1;
 }
 
@@ -542,7 +584,7 @@ html, body {
    ============================================================ */
 .card-henna {
     background-image: url('../Wedding/(BG)henna.png');
-    padding: 10px !important;
+    padding: 30px !important;
 }
 
 .henna-content {
@@ -553,31 +595,31 @@ html, body {
     flex-direction: column;
     align-items: flex-start; /* Changed from center to align left */
     padding-top: 122px;
-    padding-left: 55px; /* Original position - unchanged */
+    padding-left: 64px; /* Original position - unchanged */
 }
 
 .henna-join {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+    font-size: .6rem;
     color: #000;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: 500;
-    padding-left: 5px;
+    padding-left: 30px;
 }
 
 .henna-title {
     font-family: 'Great Vibes', cursive;
-    font-size: 3rem;
+    font-size: 2.4rem;
     color: #A58620; /* Dark gold */
-    margin-bottom: 8px;
+    margin-bottom: 20px;
     line-height: 1;
     padding-left: 20px; /* Original position - unchanged */
 }
 
 .henna-details {
     font-family: 'Montserrat', sans-serif;
-    font-size: .75rem;
-    font-weight: 570;
+    font-size: .65rem;
+    font-weight: 400;
     color: #000;
     line-height: 1.4;
     margin-bottom: 10px; /* Gap before dress code (was two <br> tags) */
@@ -587,8 +629,8 @@ html, body {
 }
 
 .henna-venue-address {
-    font-size: .68rem;
-    padding-left: 47px; /* Align under the venue name, after the 'Venue:' label */
+    font-size: .58rem;
+    padding-left:38px; /* Align under the venue name, after the 'Venue:' label */
     font-style: italic;
 }
 
@@ -597,26 +639,23 @@ html, body {
     max-width: 280px;
     text-align: left;
     margin-top: 0; /* Reduced from 10px */
-    margin-bottom: 0 1px;
+    margin-bottom: 0;
     padding-right: 20px;
     margin-left: -10px; /* Small shift right */
 }
 
-.girls-code, .boys-code {
-    margin-bottom: 0 .3px;
-}
-
 .code-label {
     font-family: 'Montserrat', sans-serif;
-    font-size: .8rem;
-    font-weight: 700;
+    font-size: .65rem;
+    font-weight: 560;
     color: #000;
 }
 
 .girls-code > em,
 .boys-code em {
+    font-size: 0.7rem;
     font-style: italic;
-    font-weight: 700;
+    font-weight: 450;
 }
 
 .underline {
@@ -625,19 +664,11 @@ html, body {
     margin-bottom: 3px;
 }
 
-.color-palette {
-  display: flex;
-  gap: 3px;
-  margin-top: 2px;
-  border: 3px solid #ccc; /* Width, style, and color */
-}
-
-
 .color-names-para {
     width: 68%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 470;
+    font-size: 0.55rem;
+    font-weight: 300;
     font-style: italic;
     color: #000;
     line-height: 1.3;
@@ -654,47 +685,105 @@ html, body {
     vertical-align: middle; /* Aligns circle nicely beside inline text (boys "Orange") */
 }
 
-/* Full-width wrapper pinned to the card so the pill centers on the card,
-   not on the padded content box (which is shifted right by the left padding) */
-.henna-btn-wrap {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 8px; /* 15px above the bottom of the card */
+/* ============================================================
+   HOLUD VENUE MAP BOX
+   ============================================================ */
+/* A small interactive Google Map box that sits below the Holud card.
+   It inherits the 48px breathing gap from the .slider flex column
+   and is centered within the card column. */
+.holud-map-box {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3px; /* 3px gap between pill button and blessings text */
-    z-index: 10;
+    align-items: center;      /* Center everything horizontally */
+    justify-content: center;
+    text-align: center;
+    background: var(--card-bg);
+    border-radius: 22px;      /* Matches the rounded cards */
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+    padding: 24px 20px 28px;
 }
 
-.henna-location-btn {
-    background: #fff;
-    padding: 7px 16px;
-    border-radius: 30px;
+/* "Venue Location" title in elegant script font */
+.holud-map-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 14px;
+}
+
+/* The interactive map frame — rounded, fixed ratio, centered */
+.holud-map-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 18px;
+}
+
+.holud-map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* "View on Google Maps" — light white pill button, script font */
+.holud-map-link {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.35rem;
+    color: var(--text-main);
+    text-decoration: none;
+    background: #ffffff;
+    padding: 8px 30px;
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.holud-map-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================================
+   ENGAGEMENT RING DIVIDER (above the Akt card)
+   ============================================================ */
+/* A centered ring image with soft light-gold hairlines on both sides —
+   reads like a page break / start of the ceremonies. Inherits the 48px
+   breathing gap from the .slider flex column. */
+.engagement-divider {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center content inside the button */
-    gap: 7px;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    z-index: 10;
-    transition: transform 0.3s ease;
-    width: fit-content; /* Ensure it wraps content */
+    justify-content: center;
+    gap: 16px;
+    padding: 10px 0;
 }
 
-.henna-location-btn:hover {
-    transform: scale(1.05);
+.engagement-ring {
+    width: 100px; /* Scaled down from the 565px source */
+    height: auto;
+    display: block;
+    flex-shrink: 0;
 }
 
-.btn-text {
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.2rem;
-    color: #000;
+/* Light color line beside the ring */
+.divider-line {
+    flex: 1;
+    max-width: 110px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.45), transparent);
 }
 
-.pin-icon {
-    font-size: 1rem;
+/* Wedding & Walima animations are wide landscape images, so they sit
+   slightly larger than the ring inside the same divider frame */
+.divider-animation-img {
+    width: 175px;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
 }
 
 /* ============================================================
@@ -702,7 +791,7 @@ html, body {
    ============================================================ */
 .card-akt {
     background-image: url('../Wedding/(BG)TheAkt.png');
-    padding: 0 !important;
+    padding: 20 !important;
 }
 
 .akt-content {
@@ -712,13 +801,8 @@ html, body {
     flex-direction: column;
     align-items: center;
     padding-top: 112px; /* Reduced to make room for the Arabic line at the top */
+    padding-bottom: 10px;
     z-index: 5;
-}
-
-/* Ensure flow layout works with animations */
-.card-akt.active .fade-text {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
 }
 
 /* Henna, Akt & Wedding: calligraphy image at top */
@@ -726,25 +810,25 @@ html, body {
     width: 35%;
     max-width: 160px;
     height: auto;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 /* Wedding: slightly larger calligraphy */
 .card-wedding .arabic-caligraphy-img {
-    width: 65%;
+    width: 75%;
     max-width: 210px;
 }
 
 /* Intro: calligraphy sized to fit inside the postcard frame */
 .card-intro .arabic-caligraphy-img {
-    width: 68%;
+    width: 75%;
     max-width: 300px;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 }
 
 .akt-title-main {
     font-family: 'Great Vibes', cursive !important;
-    font-size: 2.8rem !important; /* Slightly larger for the Monte Carlo font */
+    font-size: 2.5rem !important; /* Slightly larger for the Monte Carlo font */
     color: #000;
     margin: 0 0 10px 0 !important;
     text-align: center;
@@ -752,10 +836,10 @@ html, body {
 
 .akt-message {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.7rem !important;
-    width: 72%;
+    font-size: 0.62rem !important;
+    width: 69%;
     color: #000;
-    line-height: 1.2 !important;
+    line-height: 1.3 !important;
     text-align: center;
     padding: 0 5px;
     margin-bottom: 10px;
@@ -773,40 +857,30 @@ html, body {
 
 .akt-info-row {
     display: flex;
-    flex-direction: row; /* Label and value side-by-side as in image */
+    flex-direction: column; /* Label sits above its value */
     width: 100%;
     justify-content: center;
-    align-items: baseline;
-    margin-bottom: 5px; /* Increased distance between the 3 rows */
+    align-items: center;
+    margin-bottom: 10px; /* Room between the three rows */
     font-family: 'Montserrat', sans-serif;
 }
 
-.akt-value {
-    font-size: .85rem; /* Enlarged as requested */
-    font-weight: 578; /* Bolder as requested */
+/* "Venue" / "Date" / "Time" — smaller than the value below it */
+.akt-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     color: #000;
-    text-align: left;
-    line-height: 1.4;
+    margin-bottom: 3px;
 }
 
-.akt-location-btn {
-    background: #e2a188;
-    padding: 5px 20px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    z-index: 10;
-    transition: transform 0.3s ease;
-    width: fit-content;
-
-    /* New positioning rules */
-    position: fixed;
-    bottom: 90px; /* Adjust this to change distance from the very bottom */
-    transform: translateX(-50%);
+.akt-value {
+    font-size: .75rem; /* Enlarged as requested */
+    font-weight: 578; /* Bolder as requested */
+    color: #000;
+    text-align: center;
+    line-height: 1.4;
 }
 
 /* ============================================================
@@ -824,21 +898,15 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Push everything to the top */
-    padding: 125px 20px 0 20px; /* Pushed further down to the center-top area */
+    padding: 140px 20px 0 20px; /* Pushed further down to the center-top area */
     z-index: 3;
-}
-
-/* Ensure flow layout works with animations */
-.card-wedding.active .fade-text {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
 }
 
 .wedding-invite-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.7rem;
     color: #000;
-    margin-bottom: 3px;
+    margin-bottom: 7px;
     font-weight: 1;
 }
 
@@ -907,21 +975,7 @@ html, body {
     font-weight: 400;
     padding: 0 5px;
     margin-top: 10px;
-    margin-top: 4;
     margin-bottom: 2px;
-}
-
-/* ============================================================
-   ARABIC INVITATION TEXT (shared by Akt & Wedding cards)
-   ============================================================ */
-.arabic-text {
-    font-family: 'Amiri', serif;
-    font-size: 0.72rem;
-    color: #3e2723;
-    text-align: center;
-    direction: rtl;
-    padding: 0 15px;
-    margin-bottom: 5px;
 }
 
 /* ============================================================
@@ -942,22 +996,6 @@ html, body {
     z-index: 5;
 }
 
-/* Ensure flow layout works with animations */
-.card-walima.active .fade-text {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-.walima-arabic {
-    font-family: 'Amiri', serif;
-    font-size: 0.72rem; /* Increased from 0.68rem for readability */
-    color: #3e2723;
-    text-align: center;
-    direction: rtl;
-    padding: 0 15px;
-    margin-bottom: 5px;
-}
-
 .walima-title-main {
     font-family: 'Great Vibes', cursive;
     font-size: 2.2rem !important;
@@ -973,14 +1011,14 @@ html, body {
     color: #4e342e;
     line-height: 1.3 !important;
     text-align: center;
-    padding: 0 5px;
-    margin-bottom: 7px; /* Reduced from 25px to save space */
+    padding: 0 2px;
+    margin-bottom: 3px; /* Reduced from 25px to save space */
 }
 
 .walima-venue-label {
     font-family: 'Montserrat', serif;
-    font-size: .75rem;
-    color: #a67c00;
+    font-size: .7rem;
+    color: #3e2723; /* Same color as the Walima Ceremony title font */
     text-align: center;
     margin-bottom: 2px;
 }
@@ -989,43 +1027,50 @@ html, body {
     font-family: 'Montserrat', serif;
     font-size: 1rem;
     font-weight: 500;
-    color: #a67c00;
+    color: #3e2723; /* Same color as the Walima Ceremony title font */
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .walima-venue-address {
     font-family: 'Montserrat', serif;
     font-size: 0.6rem;
-    color: #a67c00;
+    color: #3e2723; /* Same color as the Walima Ceremony title font */
     text-align: center;
     line-height: 1.2;
     padding: 0 40px;
-    margin-bottom: 7px;
+    margin-bottom: 10px; /* Tighter gap before the Date row */
 }
 
 .walima-details-group {
     width: 100%;
     text-align: center;
+}
 
+/* Tighten the gap between each "Date"/"Time" label and its value below it */
+.walima-details-group .walima-venue-label {
+    margin-bottom: 0;
+    line-height: 1.1;
 }
 
 .walima-info-row {
-    margin-bottom: 2px;
+    margin-bottom: 0;
     text-align: center;
 }
 
 .walima-gold-label {
     font-family: 'Montserrat', serif;
     font-size: 1rem; /* Increased from 0.7rem */
-    color: #a67c00;
+    font-weight: 500; /* Bold like the "Kings Of Chittagong" venue name */
+    color: #3e2723; /* Same color as the Walima Ceremony title font */
     text-align: center;
 }
 
 .walima-gold-value {
     font-family: 'Montserrat', serif;
     font-size: 1rem; /* Increased from 0.7rem */
-    color: #a67c00;
+    font-weight: 500; /* Bold like the "Kings Of Chittagong" venue name */
+    color: #3e2723; /* Same color as the Walima Ceremony title font */
     text-align: center;
 }
 
@@ -1034,7 +1079,7 @@ html, body {
    ============================================================ */
 .blessings-text {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.1rem;
+    font-size: .75rem;
     color: var(--text-sub);
     letter-spacing: 1px;
     text-align: center;
@@ -1043,31 +1088,13 @@ html, body {
     font-weight: 700;
 }
 
-/* Henna: blessings text sits inside the wrap, 3px below the pill button */
-.henna-btn-wrap .blessings-text {
-    position: static;
-}
-
-/* Walima: 'Blessings Only' stays at the bottom of the card (previous place) */
+/* Walima: 'Blessings Only' now sits in the flow, right under the Time row */
 .card-walima .blessings-text {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20px;
+    margin-top: 120px;
     font-weight: 500; /* Slightly lighter than the default 700 */
 }
 
-/* Desktop / tablets: keep the postcard at its native 9:16 portrait ratio
-   so it isn't stretched into a tall skinny shape on wide screens.
-   On phones (below 768px) the original 91vw x 82vh sizing is kept. */
-@media (min-width: 768px) {
-    .slider {
-        width: min(91vw, 428px, calc(82vh / 1.78));
-        height: min(82vh, calc(min(91vw, 428px) * 1.78));
-    }
-}
-
-/* Responsive scaling for mobile devices */
+/* Responsive scaling for small phones */
 @media (max-width: 480px) {
     .tap-hint { font-size: 1.6rem; top: -45px; }
     .quran-arabic { font-size: 1.2rem; }
