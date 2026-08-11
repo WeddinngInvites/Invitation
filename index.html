@@ -436,11 +436,15 @@
     }
 
     window.addEventListener('scroll', updateVisibleSlide, { passive: true });
-    // Dismiss the scroll hint as soon as the guest starts scrolling
+    // Dismiss the scroll hint once the guest has scrolled halfway through the page
     window.addEventListener('scroll', () => {
         const hint = document.getElementById('scrollHint');
-        if (hint) hint.classList.remove('show');
-    }, { passive: true, once: true });
+        if (!hint || !hint.classList.contains('show')) return;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (maxScroll > 0 && window.scrollY >= maxScroll * 0.5) {
+            hint.classList.remove('show');
+        }
+    }, { passive: true });
 
     // ---- Scroll reveal: every text & photo glides in as it enters the viewport ----
     // Each element is revealed individually (with its own tiny stagger), so a

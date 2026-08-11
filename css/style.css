@@ -120,7 +120,7 @@ html, body {
 .envelope-container {
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: calc(50% + 16px); /* Shifted slightly to the right */
     transform: translate(-50%, -50%);
     width: 90vw;
     max-width: 450px;
@@ -413,6 +413,7 @@ html, body {
     background-image: url('../Wedding/(BG)IntroductionCard.png');
     justify-content: flex-start;
     padding-top: 50px !important; /* Pushes all content (incl. Arabic calligraphy) further down */
+    margin-top: 8px; /* Moves the whole first card down a bit */
 }
 
 .intro-title-script {
