@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Monte+Carlo&family=Amiri:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=1.0.74">
+    <link rel="stylesheet" href="css/style.css?v=1.0.77">
 </head>
 <body>
 
@@ -210,7 +210,7 @@
                 <div class="walima-message fade-text anim-left delay-3">With Joyful Hearts, We Request The Honor Of<br>Your Presence And Blessing On The Auspicious<br>Occasion Of The Walima Ceremony.</div>
 
                 <div class="walima-venue-label fade-text anim-right delay-4"></br>Venue</div>
-                <div class="walima-venue-name fade-text anim-left delay-4">Kings Of Chittagong,</div>
+                <div class="walima-venue-name fade-text anim-left delay-4">King Of Chittagong,</div>
                 <div class="walima-venue-address fade-text anim-right delay-4">Panchlaish, Chattogram.</div>
 
                 <div class="walima-details-group fade-text anim-up delay-5">
@@ -234,6 +234,14 @@
         <span class="scroll-hint-text">Scroll to explore</span>
         <span class="scroll-hint-arrow">↓</span>
     </div>
+
+    <!-- Background music (plays at 36% volume, loops, starts when the invitation appears) -->
+    <audio id="bg-music" src="Wedding/BGMusicChaadBaliyan.mp3" loop preload="auto"></audio>
+
+    <!-- Music toggle button pinned to the bottom-right corner -->
+    <button id="music-toggle" class="music-toggle" aria-label="Toggle background music">
+        <span class="music-note">♫</span>
+    </button>
 </div>
 
 <script>
@@ -297,6 +305,8 @@
     const quranWrapper = document.getElementById('quranWrapper');
     const invitationContent = document.getElementById('invitationContent');
     const envelope = document.getElementById('envelope');
+    const bgMusic = document.getElementById('bg-music');
+    const musicToggle = document.getElementById('music-toggle');
 
     // ---- Remove the Holud card if the secret link is not used ----
     if (!showHolud) {
@@ -337,6 +347,7 @@
             quranWrapper.classList.add('hidden-forever');
             quranAlreadyShown = true;
             invitationContent.classList.add('visible');
+            startMusic(); // Surah is over — the invitation (and its music) begins
         }, config.quranTiming.delayBeforeHide);
     }
 
@@ -391,6 +402,7 @@
     function startIntroSequence() {
         if (quranAlreadyShown) {
             invitationContent.classList.add('visible');
+            startMusic(); // Skip-path guard: music still starts with the invitation
             return;
         }
 
@@ -421,6 +433,75 @@
             if (hint) hint.classList.add('show');
         }, 2900);
     }
+
+    // ---- Background music ----
+    // Starts at 36% volume the moment the surah ends and the invitation
+    // content appears, loops for the whole visit, pauses whenever the
+    // guest leaves the tab/page, and can be muted via the bottom-right
+    // button.
+    bgMusic.volume = 0.36; // 36% volume
+    bgMusic.loop = true; // Keep replaying the track after it ends
+
+    let musicStarted = false;
+    let musicMuted = false;
+
+    /**
+     * Tries to play the track, and if the browser blocks autoplay outside
+     * a user gesture (e.g. iOS Safari), retries on the guest's next tap.
+     */
+    function tryPlayMusic() {
+        bgMusic.play().catch(() => {
+            const retry = () => {
+                document.removeEventListener('pointerdown', retry);
+                document.removeEventListener('touchstart', retry);
+                tryPlayMusic();
+            };
+            document.addEventListener('pointerdown', retry);
+            document.addEventListener('touchstart', retry);
+        });
+    }
+
+    /**
+     * Syncs the audio element with the current music state without
+     * restarting the track.
+     */
+    function applyMusicState() {
+        if (musicMuted) {
+            bgMusic.pause();
+            musicToggle.classList.remove('playing');
+            musicToggle.classList.add('muted');
+        } else if (musicStarted) {
+            tryPlayMusic();
+            musicToggle.classList.add('playing');
+            musicToggle.classList.remove('muted');
+        }
+    }
+
+    /**
+     * Starts the background music. Called exactly once, right when the
+     * Arabic surah ends and the invitation content becomes visible.
+     */
+    function startMusic() {
+        if (musicStarted) return;
+        musicStarted = true;
+        applyMusicState();
+    }
+
+    // Mute / unmute from the bottom-right button
+    musicToggle.addEventListener('click', () => {
+        musicMuted = !musicMuted;
+        musicToggle.setAttribute('aria-pressed', String(musicMuted));
+        applyMusicState();
+    });
+
+    // Pause when the guest isn't watching the page; resume on return
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            bgMusic.pause();
+        } else {
+            applyMusicState();
+        }
+    });
 
     // ---- Scroll-based cards (no swiping) ----
     // Each card's text fades in once the card scrolls into view.
@@ -488,6 +569,11 @@
         app.classList.add('ready');
         updateCountdown();
         setInterval(updateCountdown, 60000);
+
+        // Open the envelope on a tap anywhere on the screen. Registered only
+        // after the loader fades away, and auto-removed after the first tap
+        // (once: true), so later taps land on the invitation cards instead.
+        document.addEventListener('click', () => openEnvelope(), { once: true });
     }
     init();
 </script>
