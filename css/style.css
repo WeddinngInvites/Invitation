@@ -1169,7 +1169,18 @@ html, body {
 /* Walima: 'Blessings Only' now sits in the flow, right under the Time row */
 .card-walima .blessings-text {
     margin-top: 120px;
-    font-weight: 500; /* Slightly lighter than the default 700 */
+    font-weight: 500;
+}
+
+.walima-celebration {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #3e2723;
+    text-align: center;
+    width: 100%;
+    margin-top: -32px; /* Pulls it closer to the card, but stays outside it */
+    padding-bottom: 60px; /* Space at the very bottom of the page */
+    line-height: 1.2;
 }
 
 /* Responsive scaling for small phones */
