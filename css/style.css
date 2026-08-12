@@ -1179,3 +1179,17 @@ html, body {
 @media (max-width: 380px) {
     .quran-arabic { font-size: 1rem; }
 }
+
+/* ============================================================
+   WEBP BACKGROUNDS (faster loading)
+   ============================================================ */
+/* The script adds the "webp" class to <html> when the browser can decode
+   WebP, so it loads the ~85% smaller WebP backgrounds. Older browsers
+   ignore these rules and keep the PNG versions above. */
+html.webp .card-intro   { background-image: url('../Wedding/(BG)IntroductionCard.webp'); }
+html.webp .card-henna   { background-image: url('../Wedding/(BG)henna.webp'); }
+html.webp .card-akt     { background-image: url('../Wedding/(BG)TheAkt.webp'); }
+html.webp .card-wedding { background-image: url('../Wedding/(BG)TheWedding.webp'); }
+html.webp .card-walima  { background-image: url('../Wedding/(BG)Walima.webp'); }
+html.webp .left-half    { background-image: url('../Wedding/envelopLeft.webp'); }
+html.webp .right-half   { background-image: url('../Wedding/EnvelopRight.webp'); }
