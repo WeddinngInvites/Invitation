@@ -1172,6 +1172,12 @@ html, body {
     font-weight: 500;
 }
 
+/* Wedding: 'Blessings Only' sits under the presence line, with 18px padding */
+.card-wedding .blessings-text {
+    padding: 18px 0;
+    color: #000;
+}
+
 .walima-celebration {
     font-family: 'Great Vibes', cursive;
     font-size: 2rem;
